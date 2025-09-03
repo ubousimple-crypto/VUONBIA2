@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vườn Bia - Beer Garden & Vietnamese Cuisine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)", 
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    border: "var(--border)",
+                    'beer-green': "var(--beer-green)",
+                    'beer-green-dark': "var(--beer-green-dark)",
+                    'golden': "var(--golden)",
+                    'orange-accent': "var(--orange-accent)",
+                    'cream': "var(--cream)",
+                },
+                fontFamily: {
+                    sans: ["Inter", "sans-serif"],
+                }
+            },
+        }
+    };
+    </script>
+    <style>
+        :root {
+            --background: hsl(45 30% 98%);
+            --foreground: hsl(25 30% 15%);
+            --primary: hsl(140 45% 25%);
+            --primary-foreground: hsl(0 0% 100%);
+            --secondary: hsl(140 30% 35%);
+            --secondary-foreground: hsl(0 0% 100%);
+            --accent: hsl(45 90% 55%);
+            --accent-foreground: hsl(25 30% 15%);
+            --muted: hsl(45 20% 92%);
+            --muted-foreground: hsl(25 15% 45%);
+            --border: hsl(140 20% 80%);
+            --beer-green: hsl(140 45% 25%);
+            --beer-green-dark: hsl(140 50% 20%);
+            --golden: hsl(45 90% 55%);
+            --orange-accent: hsl(25 90% 55%);
+            --cream: hsl(45 30% 97%);
+            --radius: 0.5rem;
+        }
+        
+        .hero-bg-layer-1 {
+            background: linear-gradient(135deg, var(--beer-green) 0%, var(--beer-green-dark) 100%);
+        }
+        
+        .hero-bg-layer-2 {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="leaves" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(244,196,48,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23leaves)"/></svg>');
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 20px rgba(244, 196, 48, 0.5);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .booking-modal {
+            backdrop-filter: blur(10px);
+        }
+        
+        .sticky-header {
+            backdrop-filter: blur(20px);
+            background: rgba(45, 95, 63, 0.95);
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-background text-foreground">
+    <!-- Navigation Header -->
+    <header class="fixed top-0 w-full z-50 sticky-header border-b border-border/20">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-primary-foreground">Vườn Bia</h1>
+                </div>
+                
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#menu" class="text-primary-foreground hover:text-accent transition-colors">Thực đơn</a>
+                    <a href="#locations" class="text-primary-foreground hover:text-accent transition-colors">Cơ sở</a>
+                    <a href="#promotions" class="text-primary-foreground hover:text-accent transition-colors">Ưu đãi</a>
+                    <a href="#contact" class="text-primary-foreground hover:text-accent transition-colors">Liên hệ</a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="tel:*1986" class="hidden md:flex items-center space-x-2 bg-orange-accent text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">
+                        <i class="fas fa-phone"></i>
+                        <span class="font-semibold">HOTLINE *1986</span>
+                    </a>
+                    <button onclick="openBookingModal()" class="bg-accent text-accent-foreground px-6 py-2 rounded-lg font-semibold hover:bg-accent/90 transition-colors">
+                        Đặt bàn
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 hero-bg-layer-1"></div>
+        <div class="absolute inset-0 hero-bg-layer-2 opacity-30"></div>
+        
+        <!-- Hero Background Images -->
+        <!-- Traditional Vietnamese beer garden outdoor dining atmosphere -->
+        <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080');"></div>
+        
+        <!-- Decorative Elements -->
+        <div class="absolute top-20 left-10 w-16 h-16 opacity-30">
+            <i class="fas fa-beer text-4xl text-golden"></i>
+        </div>
+        <div class="absolute bottom-20 right-10 w-16 h-16 opacity-30">
+            <i class="fas fa-leaf text-4xl text-accent"></i>
+        </div>
+        
+        <div class="relative z-10 text-center text-white px-4">
+            <h1 class="text-6xl md:text-8xl font-bold mb-4 text-glow">
+                Vườn Bia
+            </h1>
+            <div class="text-xl md:text-3xl mb-8 font-light">
+                <p>Không có gì</p>
+                <p class="text-accent font-semibold">quý hơn</p>
+                <p>Tự do là</p>
+                <p class="text-accent font-semibold">hạnh phúc</p>
+                <p>tại <span class="text-accent font-bold">vườn bia</span></p>
+                <p>trong <span class="text-accent font-bold">thế giới của ta</span></p>
+            </div>
+            <button onclick="openBookingModal()" class="bg-accent text-accent-foreground px-8 py-3 rounded-lg text-lg font-bold hover:bg-accent/90 transition-all transform hover:scale-105">
+                Đặt bàn ngay
+            </button>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-16 bg-cream">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary">Món mới ra lò</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+                <!-- Vietnamese grilled pork skewers on charcoal grill -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" alt="Thịt nướng xiên que" class="w-full h-48 object-cover"/>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Thịt nướng xiên que</h3>
+                        <p class="text-2xl font-bold text-orange-accent">89,000đ</p>
+                        <button class="mt-3 bg-primary text-primary-foreground px-4 py-2 rounded-lg w-full hover:bg-primary/90 transition-colors">Đặt</button>
+                    </div>
+                </div>
+
+                <!-- Vietnamese grilled fish with herbs and vegetables -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <img src="https://pixabay.com/get/ga35d4762bce7648a6c2aec8c5d1b4be7bfb663ce7f4241f487fde7d0beee45ce339d4d2ace27799643116edcbfbc4dcec9f70f9b719907659140bb48a715d4b1_1280.jpg" alt="Cá nướng lá chuối" class="w-full h-48 object-cover"/>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Cá nướng lá chuối</h3>
+                        <p class="text-2xl font-bold text-orange-accent">159,000đ</p>
+                        <button class="mt-3 bg-primary text-primary-foreground px-4 py-2 rounded-lg w-full hover:bg-primary/90 transition-colors">Đặt</button>
+                    </div>
+                </div>
+
+                <!-- Vietnamese beef and vegetable salad -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" alt="Gỏi bò khô" class="w-full h-48 object-cover"/>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Gỏi bò khô</h3>
+                        <p class="text-2xl font-bold text-orange-accent">139,000đ</p>
+                        <button class="mt-3 bg-primary text-primary-foreground px-4 py-2 rounded-lg w-full hover:bg-primary/90 transition-colors">Đặt</button>
+                    </div>
+                </div>
+
+                <!-- Vietnamese spring rolls with dipping sauce -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <img src="https://pixabay.com/get/g67ea767aa141c451e419f377175053908797d1ed85992b838872c5442ed646b4b96c7e9f45214e3bb5332b40c269e6350076c8aeb4a46071eee2ecdb54504c77_1280.jpg" alt="Nem nướng Nha Trang" class="w-full h-48 object-cover"/>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Nem nướng Nha Trang</h3>
+                        <p class="text-2xl font-bold text-orange-accent">119,000đ</p>
+                        <button class="mt-3 bg-primary text-primary-foreground px-4 py-2 rounded-lg w-full hover:bg-primary/90 transition-colors">Đặt</button>
+                    </div>
+                </div>
+
+                <!-- Vietnamese grilled chicken wings -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <img src="https://pixabay.com/get/g6d28d7f86809310a8634d175b78fe79dc9f3842f22e1caa8565fb0cba86f231941af1442330f8d265b293b3e7db733bbf7f7ab83eac9c9171ac8939e9fe16349_1280.jpg" alt="Cánh gà nướng muối ớt" class="w-full h-48 object-cover"/>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Cánh gà nướng muối ớt</h3>
+                        <p class="text-2xl font-bold text-orange-accent">99,000đ</p>
+                        <button class="mt-3 bg-primary text-primary-foreground px-4 py-2 rounded-lg w-full hover:bg-primary/90 transition-colors">Đặt</button>
+                    </div>
+                </div>
+
+                <!-- Vietnamese grilled squid -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" alt="Mực nướng sa tế" class="w-full h-48 object-cover"/>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Mực nướng sa tế</h3>
+                        <p class="text-2xl font-bold text-orange-accent">189,000đ</p>
+                        <button class="mt-3 bg-primary text-primary-foreground px-4 py-2 rounded-lg w-full hover:bg-primary/90 transition-colors">Đặt</button>
+                    </div>
+                </div>
+
+                <!-- Vietnamese fried tofu with herbs -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" alt="Đậu hũ chiên xù" class="w-full h-48 object-cover"/>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Đậu hũ chiên xù</h3>
+                        <p class="text-2xl font-bold text-orange-accent">69,000đ</p>
+                        <button class="mt-3 bg-primary text-primary-foreground px-4 py-2 rounded-lg w-full hover:bg-primary/90 transition-colors">Đặt</button>
+                    </div>
+                </div>
+
+                <!-- Beer bottles and glasses on wooden table -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" alt="Bia tươi Saigon" class="w-full h-48 object-cover"/>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Bia tươi Saigon</h3>
+                        <p class="text-2xl font-bold text-orange-accent">39,000đ</p>
+                        <button class="mt-3 bg-primary text-primary-foreground px-4 py-2 rounded-lg w-full hover:bg-primary/90 transition-colors">Đặt</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#" class="bg-primary text-primary-foreground px-8 py-3 rounded-lg text-lg font-bold hover:bg-primary/90 transition-colors">
+                    XEM THỰC ĐƠN
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section id="locations" class="py-16 bg-background">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-4 text-primary">1 Cơ sở</h2>
+            <p class="text-center text-muted-foreground mb-12 text-lg">
+                Vườn Bia tự hào với không gian rộng rãi, thoáng mát và đội ngũ nhân viên nhiệt tình chu đáo sẵn sàng phục vụ quý thực khách.
+            </p>
+            
+            <!-- Vietnamese beer garden outdoor dining tables and umbrellas -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden max-w-4xl mx-auto">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400" alt="Vườn Bia Mỹ Đình" class="w-full h-64 object-cover"/>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-primary">Vườn Bia Mỹ Đình</h3>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">ĐANG MỞ</span>
+                    </div>
+                    <p class="text-muted-foreground mb-4">
+                        Vườn Bia Mỹ Đình – Không gian beer garden rộng rãi, thoáng mát với thiết kế hiện đại và phong cách Á Đông
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="openBookingModal()" class="bg-accent text-accent-foreground px-6 py-2 rounded-lg font-semibold hover:bg-accent/90 transition-colors">
+                            Đặt bàn ngay
+                        </button>
+                        <a href="#" class="border border-primary text-primary px-6 py-2 rounded-lg font-semibold hover:bg-primary hover:text-primary-foreground transition-colors">
+                            Xem bản đồ
+                        </a>
+                        <a href="#" class="border border-primary text-primary px-6 py-2 rounded-lg font-semibold hover:bg-primary hover:text-primary-foreground transition-colors">
+                            Xem chi tiết
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-primary text-primary-foreground">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-8">Liên hệ đặt bàn</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-phone text-4xl text-accent mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Hotline</h3>
+                    <a href="tel:*1986" class="text-accent text-2xl font-bold hover:text-accent/80 transition-colors">*1986</a>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-map-marker-alt text-4xl text-accent mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Địa chỉ</h3>
+                    <p>Số 7 Nguyễn Sơn 4, Lý Thái Tổ Mỹ Đại</p>
+                    <p>P. Long Xuyên, TP. An Giang</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fab fa-facebook-messenger text-4xl text-accent mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Zalo</h3>
+                    <a href="https://zalo.me/0708866767" class="text-accent text-lg font-bold hover:text-accent/80 transition-colors">0708 866 767</a>
+                </div>
+            </div>
+            <button onclick="openBookingModal()" class="bg-accent text-accent-foreground px-8 py-3 rounded-lg text-lg font-bold hover:bg-accent/90 transition-all transform hover:scale-105">
+                Đặt bàn ngay
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-beer-green-dark text-primary-foreground py-8">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-2xl font-bold text-accent">Vườn Bia</h3>
+                    <p class="text-sm opacity-80">Beer Garden & Vietnamese Cuisine</p>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="tel:*1986" class="flex items-center space-x-2 text-accent hover:text-accent/80 transition-colors">
+                        <i class="fas fa-phone"></i>
+                        <span>*1986</span>
+                    </a>
+                    <a href="https://zalo.me/0708866767" class="flex items-center space-x-2 text-accent hover:text-accent/80 transition-colors">
+                        <i class="fab fa-facebook-messenger"></i>
+                        <span>Zalo</span>
+                    </a>
+                    <button onclick="openBookingModal()" class="bg-accent text-accent-foreground px-4 py-2 rounded-lg font-semibold hover:bg-accent/90 transition-colors">
+                        Đặt bàn
+                    </button>
+                </div>
+            </div>
+            <div class="mt-6 pt-6 border-t border-primary-foreground/20">
+                <p class="text-sm opacity-60">&copy; 2024 Vườn Bia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden booking-modal bg-black/50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg w-full max-w-md p-6 relative">
+                <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                
+                <h3 class="text-2xl font-bold text-primary mb-6">Đặt bàn</h3>
+                
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Thông tin của bạn</label>
+                        <input type="text" placeholder="Tên của bạn" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"/>
+                    </div>
+                    
+                    <div>
+                        <input type="tel" placeholder="Số điện thoại" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"/>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Thông tin đặt bàn</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option>Vườn Bia Mỹ Đình</option>
+                        </select>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option>2 người</option>
+                                <option>4 người</option>
+                                <option>6 người</option>
+                                <option>8 người</option>
+                                <option>10+ người</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"/>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option>17:00</option>
+                            <option>18:00</option>
+                            <option>19:00</option>
+                            <option>20:00</option>
+                            <option>21:00</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-primary text-primary-foreground py-3 rounded-lg font-bold hover:bg-primary/90 transition-colors">
+                        Xác nhận đặt bàn
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <button onclick="openBookingModal()" class="bg-orange-accent text-white w-16 h-16 rounded-full shadow-lg hover:bg-orange-600 transition-all transform hover:scale-110 flex items-center justify-center">
+            <i class="fas fa-calendar-plus text-xl"></i>
+        </button>
+    </div>
+
+    <script>
+        // TODO: Implement booking form submission and validation
+        // TODO: Add smooth scrolling navigation
+        // TODO: Implement mobile menu toggle
+        
+        function openBookingModal() {
+            document.getElementById('bookingModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('bookingModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBookingModal();
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('bg-opacity-95');
+            } else {
+                header.classList.remove('bg-opacity-95');
+            }
+        });
+    </script>
+</body>
+</html>

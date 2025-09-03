@@ -3,119 +3,138 @@ import { Utensils, Phone, Facebook, Instagram, Youtube } from "lucide-react";
 export default function Footer() {
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
-    <footer id="lien-he" className="bg-gray-900 text-white py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div data-testid="footer-brand">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
-                <Utensils className="text-primary" />
-              </div>
-              <span className="text-xl font-bold">Quán Nhậu Tự Do</span>
-            </div>
-            <p className="text-gray-400 mb-4">
-              17 cơ sở khắp Hà Nội phục vụ quý khách hàng.
-            </p>
-            <div className="space-y-2">
-              <p className="flex items-center space-x-2" data-testid="footer-hotline">
-                <Phone className="text-secondary w-4 h-4" />
-                <span className="font-bold text-secondary">*1986</span>
-              </p>
-            </div>
-          </div>
-          
-          <div data-testid="footer-info">
-            <h3 className="text-lg font-semibold mb-4">Thông Tin</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <button 
-                  onClick={() => scrollToSection("thuc-don")}
-                  className="hover:text-secondary transition-colors"
-                  data-testid="footer-link-menu"
-                >
-                  Thực đơn
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => scrollToSection("co-so")}
-                  className="hover:text-secondary transition-colors"
-                  data-testid="footer-link-locations"
-                >
-                  Cơ sở
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => scrollToSection("uu-dai")}
-                  className="hover:text-secondary transition-colors"
-                  data-testid="footer-link-offers"
-                >
-                  Ưu đãi
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => scrollToSection("lien-he")}
-                  className="hover:text-secondary transition-colors"
-                  data-testid="footer-link-contact"
-                >
-                  Liên hệ
-                </button>
-              </li>
-            </ul>
-          </div>
-          
-          <div data-testid="footer-areas">
-            <h3 className="text-lg font-semibold mb-4">Khu Vực</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li>Ba Đình (1)</li>
-              <li>Cầu Giấy (4)</li>
-              <li>Đống Đa (3)</li>
-              <li>Hai Bà Trưng (3)</li>
-              <li>Hoàng Mai (1)</li>
-              <li>Long Biên (1)</li>
-            </ul>
-          </div>
-          
-          <div data-testid="footer-social">
-            <h3 className="text-lg font-semibold mb-4">Theo Dõi</h3>
-            <div className="flex space-x-4">
-              <a 
-                href="#" 
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-secondary transition-colors"
-                data-testid="link-facebook"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-secondary transition-colors"
-                data-testid="link-instagram"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-secondary transition-colors"
-                data-testid="link-youtube"
-              >
-                <Youtube className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400" data-testid="footer-copyright">
-          <p>&copy; 2024 Quán Nhậu Tự Do. Tất cả quyền được bảo lưu.</p>
-        </div>
+    <>
+      {/* Các nút social cố định bên trái */}
+      <div className="fixed top-[45%] right-0 flex flex-col gap-3 z-50">
+        {/* Facebook */}
+        <a
+          href="https://facebook.com"
+          target="_blank"
+          rel="noreferrer"
+          className="w-12 h-12 flex items-center justify-center bg-blue-600 rounded-full text-white hover:bg-blue-700 transition shadow-lg"
+          aria-label="Facebook"
+        >
+          <Facebook className="w-6 h-6" />
+        </a>
+
+        {/* Phone */}
+        <a
+          href="tel:+0783885288"
+          className="w-12 h-12 flex items-center justify-center bg-green-700 rounded-full text-white hover:bg-green-800 transition shadow-lg"
+          aria-label="Phone"
+        >
+          <Phone className="w-6 h-6" />
+        </a>
+
+        {/* Messenger */}
+        <a
+          href="https://m.me/yourpage"
+          target="_blank"
+          rel="noreferrer"
+          className="w-12 h-12 flex items-center justify-center bg-yellow-400 rounded-full text-white hover:bg-yellow-500 transition shadow-lg"
+          aria-label="Messenger"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M8 10l3 3 4-4"
+            />
+          </svg>
+        </a>
+
+        {/* Zalo */}
+        <a
+          href="https://zalo.me/yourid"
+          target="_blank"
+          rel="noreferrer"
+          className="w-12 h-12 flex items-center justify-center bg-red-600 rounded-full text-white hover:bg-red-700 transition shadow-lg text-sm font-bold"
+          aria-label="Zalo"
+        >
+          Zalo
+        </a>
       </div>
-    </footer>
+
+
+
+      {/* Footer chính */}
+      <footer className="bg-green-800 text-yellow-200 py-10 shadow-inner font-serif border-t-4 border-yellow-400">
+        <div className="container mx-auto px-6 max-w-5xl flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-4">
+            <div className="bg-yellow-700 rounded-md p-3 flex items-center justify-center shadow-md">
+              <Utensils className="w-6 h-6 text-yellow-200" />
+            </div>
+            <div>
+              <h1 className="font-extrabold text-2xl tracking-wide">Vườn Bia</h1>
+              <p className="text-white text-sm mt-1 italic">
+                Nơi hội tụ bạn bè, nhâm nhi bia ngon
+              </p>
+              <div className="flex items-center gap-2 mt-1 text-yellow-400 text-sm font-semibold">
+                <Phone className="w-4 h-4" />
+                <span>
+                  Hotline:{" "}
+                  <span className="text-yellow-200 font-bold">*078 388 5288</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <nav className="flex gap-8 text-yellow-300 font-semibold text-sm cursor-pointer">
+            <button
+              onClick={() => scrollToSection("thuc-don")}
+              className="hover:text-yellow-400 transition-colors duration-200"
+            >
+              Thực đơn
+            </button>
+            <button
+              onClick={() => scrollToSection("co-so")}
+              className="hover:text-yellow-400 transition-colors duration-200"
+            >
+              Cơ sở
+            </button>
+            <button
+              onClick={() => scrollToSection("uu-dai")}
+              className="hover:text-yellow-400 transition-colors duration-200"
+            >
+              Ưu đãi
+            </button>
+            <button
+              onClick={() => scrollToSection("lien-he")}
+              className="hover:text-yellow-400 transition-colors duration-200"
+            >
+              Liên hệ
+            </button>
+          </nav>
+
+          <div className="flex gap-6">
+            {[Facebook, Instagram, Youtube].map((Icon, idx) => (
+              <a
+                key={idx}
+                href="#"
+                className="text-yellow-300 hover:text-yellow-400 transition-colors duration-200"
+                aria-label="social"
+              >
+                <Icon className="w-7 h-7" />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="text-center text-yellow-400 text-xs mt-8 select-none italic tracking-wide">
+          &copy; 2024 Vườn Bia. Tất cả quyền được bảo lưu.
+        </div>
+      </footer>
+    </>
   );
 }

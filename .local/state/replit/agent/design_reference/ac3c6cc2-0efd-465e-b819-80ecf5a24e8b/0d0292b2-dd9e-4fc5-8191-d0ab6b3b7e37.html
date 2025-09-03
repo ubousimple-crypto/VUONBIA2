@@ -1,0 +1,857 @@
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quán Nhậu Tự Do - 17 Cơ Sở Khắp Hà Nội</title>
+    <meta name="description" content="Quán Nhậu Tự Do - Chuỗi quán nhậu nổi tiếng với 17 cơ sở khắp Hà Nội. Đặt bàn hotline *1986">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "hsl(0 0% 100%)",
+                    foreground: "hsl(222.2 84% 4.9%)",
+                    primary: {
+                        DEFAULT: "hsl(142 76% 36%)", // #1a5f1a
+                        foreground: "hsl(0 0% 98%)",
+                    },
+                    secondary: {
+                        DEFAULT: "hsl(28 58% 65%)", // #f4a460
+                        foreground: "hsl(222.2 84% 4.9%)",
+                    },
+                    accent: {
+                        DEFAULT: "hsl(60 100% 97%)", // cream
+                        foreground: "hsl(222.2 84% 4.9%)",
+                    },
+                    muted: {
+                        DEFAULT: "hsl(210 40% 96%)",
+                        foreground: "hsl(215.4 16.3% 46.9%)",
+                    },
+                    border: "hsl(214.3 31.8% 91.4%)",
+                    input: "hsl(214.3 31.8% 91.4%)",
+                    ring: "hsl(142 76% 36%)",
+                },
+                fontFamily: {
+                    sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+                },
+                animation: {
+                    'fade-in': 'fadeIn 0.5s ease-in-out',
+                    'slide-up': 'slideUp 0.6s ease-out',
+                }
+            },
+        }
+    };
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --radius: 0.5rem;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .hero-parallax {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)),
+                        url('https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080') center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-parallax::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080') center/cover;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .sticky-header {
+            transition: all 0.3s ease;
+        }
+
+        .sticky-header.scrolled {
+            background: rgba(26, 95, 26, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            min-width: 280px;
+            margin-right: 20px;
+        }
+
+        .location-card {
+            transition: all 0.3s ease;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .modal {
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="sticky-header fixed top-0 w-full z-50 bg-primary text-white">
+        <div class="container mx-auto px-4">
+            <nav class="flex items-center justify-between py-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-utensils text-2xl text-primary"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">Quán Nhậu Tự Do</h1>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#thuc-don" class="hover:text-secondary transition-colors font-medium">THỰC ĐƠN</a>
+                    <a href="#co-so" class="hover:text-secondary transition-colors font-medium">CƠ SỞ</a>
+                    <a href="#uu-dai" class="hover:text-secondary transition-colors font-medium">ƯU ĐÃI</a>
+                    <a href="#lien-he" class="hover:text-secondary transition-colors font-medium">LIÊN HỆ</a>
+                </div>
+
+                <!-- Right Side -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <div class="text-right">
+                        <div class="text-sm">HOTLINE</div>
+                        <div class="text-xl font-bold text-secondary">*1986</div>
+                    </div>
+                    <button onclick="openBookingModal()" class="bg-secondary text-primary px-6 py-2 rounded-lg font-bold hover:bg-opacity-90 transition-all">
+                        ĐẶT BÀN
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </nav>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="lg:hidden hidden pb-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="#thuc-don" class="hover:text-secondary transition-colors">THỰC ĐƠN</a>
+                    <a href="#co-so" class="hover:text-secondary transition-colors">CƠ SỞ</a>
+                    <a href="#uu-dai" class="hover:text-secondary transition-colors">ƯU ĐÃI</a>
+                    <a href="#lien-he" class="hover:text-secondary transition-colors">LIÊN HỆ</a>
+                    <div class="pt-3 border-t border-green-600">
+                        <div class="text-sm">HOTLINE: <span class="text-secondary font-bold">*1986</span></div>
+                        <button onclick="openBookingModal()" class="mt-2 bg-secondary text-primary px-4 py-2 rounded font-bold">
+                            ĐẶT BÀN
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-parallax min-h-screen flex items-center justify-center text-white">
+        <div class="hero-content container mx-auto px-4 text-center">
+            <div class="max-w-4xl mx-auto space-y-8 animate-slide-up">
+                <h2 class="text-6xl lg:text-8xl font-light tracking-wider">
+                    <span class="block">Không có gì</span>
+                    <span class="block text-secondary font-bold">quý</span>
+                </h2>
+                <h3 class="text-4xl lg:text-6xl font-light">
+                    <span class="block">Tự do là</span>
+                    <span class="block text-secondary font-bold">hạnh phúc</span>
+                </h3>
+                <p class="text-2xl lg:text-3xl font-light opacity-90">
+                    tự do trong thế giới của ta
+                </p>
+                <div class="pt-8">
+                    <button onclick="openBookingModal()" class="bg-secondary text-primary px-12 py-4 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-all transform hover:scale-105">
+                        ĐẶT BÀN NGAY
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Dishes Section -->
+    <section id="thuc-don" class="py-20 bg-primary text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-4">Món mới ra lò</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto"></div>
+            </div>
+
+            <!-- Carousel Container -->
+            <div class="relative">
+                <div class="carousel-container">
+                    <div id="carousel-track" class="carousel-track">
+                        <!-- Vietnamese grilled pork salad with herbs and vegetables -->
+                        <div class="carousel-slide">
+                            <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://pixabay.com/get/gc3b18fe32cd51c3ca6b91c422ddb0042a33d002afc81480e0c988075514ef30f871436a3512a72bbe4de7d532c9e63390b12fba9049a8a2116cc27548a3da673_1280.jpg" alt="Lạp xưởng tây bắc xào dân tộc" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Lạp xưởng tây bắc xào dân tộc</h3>
+                                    <p class="text-2xl font-bold text-secondary mb-4">149,000đ</p>
+                                    <button class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                        Đặt
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vietnamese beef salad with tomatoes and herbs -->
+                        <div class="carousel-slide">
+                            <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" alt="Gỏi bò cà pháo đồng quê" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Gỏi bò cà pháo đồng quê</h3>
+                                    <p class="text-2xl font-bold text-secondary mb-4">169,000đ</p>
+                                    <button class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                        Đặt
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vietnamese frog legs with ginger sauce -->
+                        <div class="carousel-slide">
+                            <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" alt="Ếch sốt tiêu gừng chua cay" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Ếch sốt tiêu gừng chua cay</h3>
+                                    <p class="text-2xl font-bold text-secondary mb-4">159,000đ</p>
+                                    <button class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                        Đặt
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vietnamese seafood with herbs and salt -->
+                        <div class="carousel-slide">
+                            <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" alt="Ốc hương ủ muối thảo mộc" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Ốc hương ủ muối thảo mộc</h3>
+                                    <p class="text-2xl font-bold text-secondary mb-4">269,000đ</p>
+                                    <button class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                        Đặt
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vietnamese stir-fried water buffalo with vegetables -->
+                        <div class="carousel-slide">
+                            <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" alt="Trâu xào rau muống" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Trâu xào rau muống</h3>
+                                    <p class="text-2xl font-bold text-secondary mb-4">159,000đ</p>
+                                    <button class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                        Đặt
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vietnamese chicken feet salad with roasted rice powder -->
+                        <div class="carousel-slide">
+                            <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" alt="Gỏi chân gà trộn thính" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Gỏi chân gà trộn thính</h3>
+                                    <p class="text-2xl font-bold text-secondary mb-4">119,000đ</p>
+                                    <button class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                        Đặt
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel Navigation -->
+                <button onclick="previousSlide()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-secondary text-primary w-12 h-12 rounded-full flex items-center justify-center hover:bg-opacity-90 transition-all">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="nextSlide()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-secondary text-primary w-12 h-12 rounded-full flex items-center justify-center hover:bg-opacity-90 transition-all">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <!-- Carousel Dots -->
+                <div class="flex justify-center mt-8 space-x-2">
+                    <button onclick="goToSlide(0)" class="carousel-dot w-3 h-3 rounded-full bg-secondary opacity-50"></button>
+                    <button onclick="goToSlide(1)" class="carousel-dot w-3 h-3 rounded-full bg-secondary opacity-50"></button>
+                    <button onclick="goToSlide(2)" class="carousel-dot w-3 h-3 rounded-full bg-secondary opacity-50"></button>
+                </div>
+            </div>
+
+            <div class="text-center mt-16">
+                <button class="bg-transparent border-2 border-secondary text-secondary px-12 py-4 rounded-lg text-lg font-bold hover:bg-secondary hover:text-primary transition-all">
+                    XEM THỰC ĐƠN
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section id="co-so" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-4">17 Cơ sở</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Quán Nhậu Tự Do tự hào khi có số lượng cơ sở khắp các quận cùng đội ngũ nhân viên nhiệt tình chu đáo sẵn sàng phục vụ quý thực khách.</p>
+            </div>
+
+            <!-- District Filter -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button onclick="filterLocations('all')" class="district-filter active bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-all">
+                    Gần bạn nhất
+                </button>
+                <button onclick="filterLocations('ba-dinh')" class="district-filter bg-white text-primary border border-primary px-6 py-2 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all">
+                    Ba Đình <span class="text-sm">(1)</span>
+                </button>
+                <button onclick="filterLocations('cau-giay')" class="district-filter bg-white text-primary border border-primary px-6 py-2 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all">
+                    Cầu Giấy <span class="text-sm">(4)</span>
+                </button>
+                <button onclick="filterLocations('dong-da')" class="district-filter bg-white text-primary border border-primary px-6 py-2 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all">
+                    Đống Đa <span class="text-sm">(3)</span>
+                </button>
+                <button onclick="filterLocations('hai-ba-trung')" class="district-filter bg-white text-primary border border-primary px-6 py-2 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all">
+                    Hai Bà Trưng <span class="text-sm">(3)</span>
+                </button>
+            </div>
+
+            <!-- Locations Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Ba Đình Location -->
+                <!-- Modern Vietnamese restaurant exterior with warm lighting -->
+                <div class="location-card bg-white rounded-xl overflow-hidden shadow-lg" data-district="ba-dinh">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250" alt="67A Phó Đức Chính" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            ĐANG MỞ
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">67A Phó Đức Chính</h3>
+                        <p class="text-gray-600 mb-4">Quán Nhậu Tự Do 67A Phó Đức Chính – "Chốn ăn chơi" mới của anh em quận Ba Đình</p>
+                        <div class="space-y-2">
+                            <button onclick="openBookingModal()" class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                Đặt bàn ngay
+                            </button>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
+                                    Xem bản đồ
+                                </button>
+                                <button class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
+                                    Xem chi tiết
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cầu Giấy Locations -->
+                <!-- Vietnamese restaurant interior with traditional wooden decor -->
+                <div class="location-card bg-white rounded-xl overflow-hidden shadow-lg" data-district="cau-giay">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1590947132387-155cc02f3212?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250" alt="10 Nguyễn Văn Huyên" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            ĐANG MỞ
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">10 Nguyễn Văn Huyên</h3>
+                        <p class="text-gray-600 mb-4">Quán Nhậu Tự Do 10 Nguyễn Văn Huyên – Quán nhậu sáng nhất quận Cầu Giấy</p>
+                        <div class="space-y-2">
+                            <button onclick="openBookingModal()" class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                Đặt bàn ngay
+                            </button>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
+                                    Xem bản đồ
+                                </button>
+                                <button class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
+                                    Xem chi tiết
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vietnamese beer garden outdoor seating with string lights -->
+                <div class="location-card bg-white rounded-xl overflow-hidden shadow-lg" data-district="cau-giay">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250" alt="68 Khúc Thừa Dụ" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            ĐANG MỞ
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">68 Khúc Thừa Dụ</h3>
+                        <p class="text-gray-600 mb-4">Quán Nhậu Tự Do 68 Khúc Thừa Dụ - Cầu Giấy</p>
+                        <div class="space-y-2">
+                            <button onclick="openBookingModal()" class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                Đặt bàn ngay
+                            </button>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
+                                    Xem bản đồ
+                                </button>
+                                <button class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
+                                    Xem chi tiết
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vietnamese hot pot restaurant with modern interior -->
+                <div class="location-card bg-white rounded-xl overflow-hidden shadow-lg" data-district="cau-giay">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1515669097368-22e68427d265?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250" alt="Lẩu Bò TD - 58 Khúc Thừa Dụ" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            ĐANG MỞ
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Lẩu Bò TD - 58 Khúc Thừa Dụ</h3>
+                        <p class="text-gray-600 mb-4">Lẩu Bò Tự Do 58 Khúc Thừa Dụ – Quán lẩu ngon quận Cầu Giấy</p>
+                        <div class="space-y-2">
+                            <button onclick="openBookingModal()" class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                Đặt bàn ngay
+                            </button>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
+                                    Xem bản đồ
+                                </button>
+                                <button class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
+                                    Xem chi tiết
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Đống Đa Locations -->
+                <!-- Vietnamese restaurant rooftop terrace with city views -->
+                <div class="location-card bg-white rounded-xl overflow-hidden shadow-lg" data-district="dong-da">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250" alt="68 Láng Thượng" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            ĐANG MỞ
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">68 Láng Thượng</h3>
+                        <p class="text-gray-600 mb-4">Quán Nhậu Tự Do 68 Láng Thượng – Điểm hẹn mới cho giới trẻ Hà Thành</p>
+                        <div class="space-y-2">
+                            <button onclick="openBookingModal()" class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                Đặt bàn ngay
+                            </button>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
+                                    Xem bản đồ
+                                </button>
+                                <button class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
+                                    Xem chi tiết
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vietnamese street food restaurant with traditional atmosphere -->
+                <div class="location-card bg-white rounded-xl overflow-hidden shadow-lg" data-district="dong-da">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250" alt="75 Yên Lãng" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            ĐANG MỞ
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">75 Yên Lãng</h3>
+                        <p class="text-gray-600 mb-4">75 Yên Lãng</p>
+                        <div class="space-y-2">
+                            <button onclick="openBookingModal()" class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                Đặt bàn ngay
+                            </button>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
+                                    Xem bản đồ
+                                </button>
+                                <button class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
+                                    Xem chi tiết
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hai Bà Trưng Locations -->
+                <!-- Vietnamese dining room with contemporary design and warm ambiance -->
+                <div class="location-card bg-white rounded-xl overflow-hidden shadow-lg" data-district="hai-ba-trung">
+                    <div class="relative">
+                        <img src="https://pixabay.com/get/gb67d21b5e638557b5e24674f8a967dd249633dd69905a2971695f53bfca41baa96bb4bc35cb0f6d19d91244a582555ce6676b5f7c31b43adc668672794a25649_1280.jpg" alt="08 Lê Đại Hành" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            ĐANG MỞ
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">08 Lê Đại Hành</h3>
+                        <p class="text-gray-600 mb-4">Quán Nhậu Tự Do 08 Lê Đại Hành – Quán Nhậu Rooftop quận Hai Bà Trưng</p>
+                        <div class="space-y-2">
+                            <button onclick="openBookingModal()" class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                Đặt bàn ngay
+                            </button>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
+                                    Xem bản đồ
+                                </button>
+                                <button class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
+                                    Xem chi tiết
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="lien-he" class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-utensils text-primary"></i>
+                        </div>
+                        <span class="text-xl font-bold">Quán Nhậu Tự Do</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">17 cơ sở khắp Hà Nội phục vụ quý khách hàng.</p>
+                    <div class="space-y-2">
+                        <p class="flex items-center space-x-2">
+                            <i class="fas fa-phone text-secondary"></i>
+                            <span class="font-bold text-secondary">*1986</span>
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Thông Tin</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#thuc-don" class="hover:text-secondary transition-colors">Thực đơn</a></li>
+                        <li><a href="#co-so" class="hover:text-secondary transition-colors">Cơ sở</a></li>
+                        <li><a href="#uu-dai" class="hover:text-secondary transition-colors">Ưu đãi</a></li>
+                        <li><a href="#lien-he" class="hover:text-secondary transition-colors">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Khu Vực</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Ba Đình (1)</li>
+                        <li>Cầu Giấy (4)</li>
+                        <li>Đống Đa (3)</li>
+                        <li>Hai Bà Trưng (3)</li>
+                        <li>Hoàng Mai (1)</li>
+                        <li>Long Biên (1)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Theo Dõi</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-secondary transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-secondary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-secondary transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Quán Nhậu Tự Do. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-800">Đặt bàn</h3>
+                    <button onclick="closeBookingModal()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Họ và tên</label>
+                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Nhập họ và tên">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Số điện thoại</label>
+                        <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Nhập số điện thoại">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Lựa chọn cơ sở</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="">Chọn cơ sở</option>
+                            <option value="67a-pho-duc-chinh">67A Phó Đức Chính - Ba Đình</option>
+                            <option value="02-le-duc-tho">02 Lê Đức Thọ - Cầu Giấy</option>
+                            <option value="10-nguyen-van-huyen">10 Nguyễn Văn Huyên - Cầu Giấy</option>
+                            <option value="68-khuc-thua-du">68 Khúc Thừa Dụ - Cầu Giấy</option>
+                            <option value="lau-bo-58-khuc-thua-du">Lẩu Bò TD - 58 Khúc Thừa Dụ - Cầu Giấy</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Số lượng khách</label>
+                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="">Chọn số người</option>
+                                <option value="2">2 người</option>
+                                <option value="4">4 người</option>
+                                <option value="6">6 người</option>
+                                <option value="8">8 người</option>
+                                <option value="10">10+ người</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Ngày đặt</label>
+                            <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Giờ đến</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="">Chọn giờ</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Ghi chú</label>
+                        <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" rows="3" placeholder="Ghi chú thêm (nếu có)"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-opacity-90 transition-colors">
+                        XÁC NHẬN ĐẶT BÀN
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Sticky header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.sticky-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = Math.ceil(slides.length / 4); // Show 4 slides at a time
+        const track = document.getElementById('carousel-track');
+        
+        function updateCarousel() {
+            const translateX = -(currentSlide * (280 * 4 + 80)); // 4 slides width + gaps
+            track.style.transform = `translateX(${translateX}px)`;
+            
+            // Update dots
+            const dots = document.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.style.opacity = '1';
+                } else {
+                    dot.style.opacity = '0.5';
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Auto-play carousel
+        setInterval(nextSlide, 5000);
+
+        // Location filter
+        function filterLocations(district) {
+            const cards = document.querySelectorAll('.location-card');
+            const filters = document.querySelectorAll('.district-filter');
+            
+            // Update filter buttons
+            filters.forEach(filter => {
+                filter.classList.remove('active', 'bg-primary', 'text-white');
+                filter.classList.add('bg-white', 'text-primary', 'border', 'border-primary');
+            });
+            
+            event.target.classList.add('active', 'bg-primary', 'text-white');
+            event.target.classList.remove('bg-white', 'text-primary', 'border', 'border-primary');
+            
+            // Show/hide cards
+            cards.forEach(card => {
+                if (district === 'all' || card.dataset.district === district) {
+                    card.style.display = 'block';
+                    card.classList.add('animate-fade-in');
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Booking modal
+        function openBookingModal() {
+            document.getElementById('booking-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('booking-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBookingModal();
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('#booking-modal form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // TODO: Implement form submission logic
+            alert('Cảm ơn bạn đã đặt bàn! Chúng tôi sẽ liên hệ với bạn sớm nhất.');
+            closeBookingModal();
+        });
+
+        // Initialize carousel
+        updateCarousel();
+
+        // Lazy loading images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
+</body>
+</html>

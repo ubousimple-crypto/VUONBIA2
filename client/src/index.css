@@ -115,11 +115,14 @@
 
 @layer utilities {
   .hero-parallax {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)),
-                url('https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080') center/cover;
+    
+    aspect-ratio: auto; /* hoặc bỏ aspect-ratio để chiều cao tự nhiên */
+    min-height: 300px; /* hoặc chỉnh theo ý bạn */
     position: relative;
-    overflow: hidden;
+    overflow: visible; /* hoặc hidden nếu bạn muốn ẩn */
+    background-color: transparent;
   }
+
 
   .hero-parallax::before {
     content: '';
@@ -128,7 +131,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080') center/cover;
     opacity: 0.3;
     z-index: 1;
   }
@@ -184,3 +186,34 @@
     animation: slideUp 0.6s ease-out;
   }
 }
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+/* Thêm cho phần tử cha */
+.sticky-container {
+  position: relative;
+  z-index: 10; /* Đảm bảo các phần tử con được hiển thị trên các phần tử khác */
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 20; /* Đảm bảo thanh tìm kiếm luôn trên đầu */
+  background-color: white; /* Đảm bảo màu nền của thanh cố định */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nếu cần */
+  padding: 1rem;
+}
+
+.sticky-category {
+  position: sticky;
+  top: 60px; /* Nếu thanh tìm kiếm có chiều cao 60px, hãy thử cho top = 60px */
+  z-index: 15;
+  background-color: white;
+  padding: 0.5rem;
+}
+
+

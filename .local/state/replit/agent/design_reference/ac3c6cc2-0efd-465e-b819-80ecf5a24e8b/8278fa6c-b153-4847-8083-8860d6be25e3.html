@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cơm Nhà - Quán Nhậu Truyền Thống | Đặt Bàn Online</title>
+    <meta name="description" content="Quán nhậu Cơm Nhà - Hương vị truyền thống miền Tây, không gian ấm cúng. Đặt bàn online, giao hàng tận nơi.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                },
+                fontFamily: {
+                    sans: ["Inter", "sans-serif"],
+                }
+            },
+        }
+    };
+    </script>
+    
+    <style>
+        :root {
+            --background: hsl(60 9% 98%);
+            --foreground: hsl(20 14% 8%);
+            --card: hsl(0 0% 100%);
+            --card-foreground: hsl(20 14% 8%);
+            --primary: hsl(100 40% 25%);
+            --primary-foreground: hsl(60 9% 98%);
+            --secondary: hsl(45 90% 55%);
+            --secondary-foreground: hsl(20 14% 8%);
+            --muted: hsl(60 4% 96%);
+            --muted-foreground: hsl(25 5% 45%);
+            --accent: hsl(35 85% 55%);
+            --accent-foreground: hsl(60 9% 98%);
+            --border: hsl(20 6% 90%);
+            --input: hsl(20 6% 90%);
+            --ring: hsl(100 40% 25%);
+            --radius: 0.5rem;
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, 
+                hsl(100 40% 25% / 0.9) 0%, 
+                hsl(80 35% 30% / 0.8) 50%, 
+                hsl(35 85% 55% / 0.7) 100%);
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-background text-foreground antialiased">
+    <!-- Fixed Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-effect border-b border-border">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-home text-primary-foreground text-lg"></i>
+                    </div>
+                    <span class="font-bold text-xl text-primary">Cơm Nhà</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#home" class="text-foreground hover:text-primary transition-colors">Trang Chủ</a>
+                    <a href="#menu" class="text-foreground hover:text-primary transition-colors">Thực Đơn</a>
+                    <a href="#reservation" class="text-foreground hover:text-primary transition-colors">Đặt Bàn</a>
+                    <a href="#contact" class="text-foreground hover:text-primary transition-colors">Liên Hệ</a>
+                </div>
+                
+                <div class="flex items-center space-x-2">
+                    <a href="tel:0708866767" 
+                       class="bg-accent text-accent-foreground px-4 py-2 rounded-lg font-medium hover:bg-accent/90 transition-colors">
+                        <i class="fas fa-phone mr-2"></i>
+                        <span class="hidden sm:inline">0708 866 767</span>
+                    </a>
+                    <button class="md:hidden p-2 text-foreground hover:text-primary" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-card border-t border-border">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#home" class="block py-2 text-foreground hover:text-primary transition-colors">Trang Chủ</a>
+                <a href="#menu" class="block py-2 text-foreground hover:text-primary transition-colors">Thực Đơn</a>
+                <a href="#reservation" class="block py-2 text-foreground hover:text-primary transition-colors">Đặt Bàn</a>
+                <a href="#contact" class="block py-2 text-foreground hover:text-primary transition-colors">Liên Hệ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Traditional Vietnamese restaurant atmosphere background -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat hero-gradient"
+             style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080');">
+        </div>
+        
+        <div class="relative z-10 text-center text-white px-4 max-w-4xl">
+            <div class="mb-8">
+                <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+                    <span class="text-secondary font-medium">🍺 Quán Nhậu Truyền Thống</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-black mb-6 text-shadow">
+                    <span class="text-secondary">Cơm Nhà</span>
+                    <br />
+                    <span class="text-2xl md:text-3xl font-semibold">Hương vị miền Tây thân quen</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-white/90 text-shadow max-w-2xl mx-auto">
+                    Không gian ấm cúng • Món ăn đậm đà • Giá cả hợp lý
+                </p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button onclick="openReservation()" 
+                        class="bg-primary text-primary-foreground px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary/90 transition-all transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-calendar-check mr-2"></i>
+                    Đặt Bàn Ngay
+                </button>
+                <a href="https://zalo.me/0708866767" target="_blank"
+                   class="bg-white/20 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/30 transition-all shadow-lg">
+                    <i class="fab fa-zalo mr-2"></i>
+                    Đặt qua Zalo
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Featured Dishes Section -->
+    <section class="py-16 bg-muted">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">Món Đặc Biệt</h2>
+                <p class="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    Những món ăn được yêu thích nhất tại Cơm Nhà, chế biến từ nguyên liệu tươi ngon
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Fresh Vietnamese summer rolls and appetizers -->
+                <div class="bg-card rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1509358271058-acd22cc93898?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="Gỏi cuốn tôm thịt" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Gỏi Cuốn Tôm Thịt</h3>
+                        <p class="text-muted-foreground mb-4">Bánh tráng cuốn tôm, thịt heo luộc, rau thơm tươi</p>
+                        <div class="flex justify-between items-center">
+                            <div class="space-y-1">
+                                <span class="text-sm text-muted-foreground">Từ</span>
+                                <div class="text-2xl font-bold text-primary">25.000đ</div>
+                            </div>
+                            <button class="bg-accent text-accent-foreground px-4 py-2 rounded-lg hover:bg-accent/90 transition-colors">
+                                <i class="fas fa-plus mr-2"></i>Đặt món
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vietnamese grilled pork with rice -->
+                <div class="bg-card rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="https://pixabay.com/get/g35a7ed063756cc6878b4cd8209b446201847adc1aaeee500b8d5321e799dc8208fece52811ae5f22758475032e997d6c608ae659a811634568a45ec5ad21405d_1280.jpg" 
+                         alt="Cơm sườn nướng" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Cơm Sườn Nướng</h3>
+                        <p class="text-muted-foreground mb-4">Sườn heo nướng than hoa, cơm dẻo, rau sống</p>
+                        <div class="flex justify-between items-center">
+                            <div class="space-y-1">
+                                <span class="text-sm text-muted-foreground">Từ</span>
+                                <div class="text-2xl font-bold text-primary">35.000đ</div>
+                            </div>
+                            <button class="bg-accent text-accent-foreground px-4 py-2 rounded-lg hover:bg-accent/90 transition-colors">
+                                <i class="fas fa-plus mr-2"></i>Đặt món
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vietnamese pho noodle soup -->
+                <div class="bg-card rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="Bún bò Huế" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Bún Bò Huế</h3>
+                        <p class="text-muted-foreground mb-4">Nước dúng đậm đà, thịt bò, chả cua đặc biệt</p>
+                        <div class="flex justify-between items-center">
+                            <div class="space-y-1">
+                                <span class="text-sm text-muted-foreground">Từ</span>
+                                <div class="text-2xl font-bold text-primary">40.000đ</div>
+                            </div>
+                            <button class="bg-accent text-accent-foreground px-4 py-2 rounded-lg hover:bg-accent/90 transition-colors">
+                                <i class="fas fa-plus mr-2"></i>Đặt món
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">Thực Đơn</h2>
+                <p class="text-muted-foreground text-lg">Đa dạng món ăn từ miền Tây đến miền Trung</p>
+            </div>
+            
+            <!-- Menu Search and Filter -->
+            <div class="mb-8">
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-center">
+                    <div class="relative w-full md:w-96">
+                        <input type="text" 
+                               placeholder="Tìm kiếm món ăn..." 
+                               class="w-full pl-10 pr-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                               onkeyup="filterMenu(this.value)">
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground"></i>
+                    </div>
+                    <div class="flex gap-2 overflow-x-auto pb-2">
+                        <button class="category-btn active px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium whitespace-nowrap" 
+                                onclick="filterCategory('all')">Tất Cả</button>
+                        <button class="category-btn px-6 py-3 rounded-lg bg-muted text-muted-foreground font-medium hover:bg-primary hover:text-primary-foreground transition-colors whitespace-nowrap" 
+                                onclick="filterCategory('com')">Cơm</button>
+                        <button class="category-btn px-6 py-3 rounded-lg bg-muted text-muted-foreground font-medium hover:bg-primary hover:text-primary-foreground transition-colors whitespace-nowrap" 
+                                onclick="filterCategory('bun')">Bún/Miến</button>
+                        <button class="category-btn px-6 py-3 rounded-lg bg-muted text-muted-foreground font-medium hover:bg-primary hover:text-primary-foreground transition-colors whitespace-nowrap" 
+                                onclick="filterCategory('xao')">Món Xào</button>
+                        <button class="category-btn px-6 py-3 rounded-lg bg-muted text-muted-foreground font-medium hover:bg-primary hover:text-primary-foreground transition-colors whitespace-nowrap" 
+                                onclick="filterCategory('nuoc')">Nước Uống</button>
+                        <button class="category-btn px-6 py-3 rounded-lg bg-muted text-muted-foreground font-medium hover:bg-primary hover:text-primary-foreground transition-colors whitespace-nowrap" 
+                                onclick="filterCategory('trangmieng')">Tráng Miệng</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Menu Items Grid -->
+            <div id="menuGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Menu items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="py-16 bg-muted">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">Đặt Bàn</h2>
+                    <p class="text-muted-foreground text-lg">Đặt bàn trước để được phục vụ tốt nhất</p>
+                </div>
+                
+                <div class="bg-card rounded-xl shadow-lg p-8">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Họ và tên *</label>
+                                <input type="text" 
+                                       required
+                                       class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                                       placeholder="Nhập họ và tên">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Số điện thoại *</label>
+                                <input type="tel" 
+                                       required
+                                       class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                                       placeholder="0901234567">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Số lượng khách *</label>
+                                <select class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <option>2 người</option>
+                                    <option>3-4 người</option>
+                                    <option>5-6 người</option>
+                                    <option>7-8 người</option>
+                                    <option>Trên 8 người</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Ngày đặt *</label>
+                                <input type="date" 
+                                       required
+                                       class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Giờ đến *</label>
+                                <select class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <option>11:00</option>
+                                    <option>11:30</option>
+                                    <option>12:00</option>
+                                    <option>12:30</option>
+                                    <option>13:00</option>
+                                    <option>17:00</option>
+                                    <option>17:30</option>
+                                    <option>18:00</option>
+                                    <option>18:30</option>
+                                    <option>19:00</option>
+                                    <option>19:30</option>
+                                    <option>20:00</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Ghi chú</label>
+                            <textarea rows="3" 
+                                      class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                                      placeholder="Yêu cầu đặc biệt (nếu có)..."></textarea>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button type="submit" 
+                                    class="flex-1 bg-primary text-primary-foreground py-4 px-6 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+                                <i class="fas fa-calendar-check mr-2"></i>
+                                Xác Nhận Đặt Bàn
+                            </button>
+                            <a href="https://zalo.me/0708866767" 
+                               target="_blank"
+                               class="flex-1 sm:flex-none bg-accent text-accent-foreground py-4 px-6 rounded-lg font-semibold hover:bg-accent/90 transition-colors text-center">
+                                <i class="fab fa-zalo mr-2"></i>
+                                Đặt qua Zalo
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">Không Gian Quán</h2>
+                <p class="text-muted-foreground text-lg">Khám phá không gian ấm cúng và món ăn hấp dẫn</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Cozy Vietnamese restaurant interior -->
+                <div class="aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" 
+                         alt="Không gian quán" class="w-full h-full object-cover">
+                </div>
+                <!-- Vietnamese grilled seafood -->
+                <div class="aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" 
+                         alt="Hải sản nướng" class="w-full h-full object-cover">
+                </div>
+                <!-- Vietnamese street food setting -->
+                <div class="aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" 
+                         alt="Không gian ăn uống" class="w-full h-full object-cover">
+                </div>
+                <!-- Fresh watermelon dessert -->
+                <div class="aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" 
+                         alt="Tráng miệng dưa hấu" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-primary text-primary-foreground">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8">Liên Hệ & Địa Chỉ</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div class="space-y-4">
+                        <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto">
+                            <i class="fas fa-phone text-2xl text-foreground"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Hotline</h3>
+                        <p class="text-primary-foreground/80">0708 866 767</p>
+                        <p class="text-sm text-primary-foreground/60">Phục vụ 10:00 - 22:00 hàng ngày</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto">
+                            <i class="fas fa-map-marker-alt text-2xl text-foreground"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Địa Chỉ</h3>
+                        <p class="text-primary-foreground/80">Số 7 Nguyễn Sơn 4, Lý Thái Tổ Mỹ Đại</p>
+                        <p class="text-primary-foreground/80">P. Long Xuyên, TP. An Giang</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto">
+                            <i class="fab fa-zalo text-2xl text-foreground"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Zalo</h3>
+                        <a href="https://zalo.me/0708866767" 
+                           target="_blank" 
+                           class="text-secondary hover:text-secondary/80 transition-colors">
+                            zalo.me/0708866767
+                        </a>
+                        <p class="text-sm text-primary-foreground/60">Đặt hàng nhanh chóng</p>
+                    </div>
+                </div>
+                
+                <!-- Map integration placeholder -->
+                <div class="bg-white/10 rounded-lg p-8 text-center">
+                    <i class="fas fa-map text-4xl mb-4"></i>
+                    <p class="text-lg mb-4">Xem vị trí trên bản đồ</p>
+                    <!-- TODO: Integrate Google Maps API -->
+                    <button class="bg-secondary text-foreground px-6 py-3 rounded-lg font-medium hover:bg-secondary/90 transition-colors">
+                        <i class="fas fa-directions mr-2"></i>
+                        Chỉ đường
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-foreground text-primary-foreground py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-home text-primary-foreground"></i>
+                        </div>
+                        <span class="font-bold text-xl">Cơm Nhà</span>
+                    </div>
+                    <p class="text-sm text-primary-foreground/70">
+                        Quán nhậu truyền thống với hương vị miền Tây đặc trưng, 
+                        không gian ấm cúng và phục vụ tận tâm.
+                    </p>
+                </div>
+                
+                <div class="space-y-4">
+                    <h4 class="font-semibold">Liên Kết</h4>
+                    <div class="space-y-2 text-sm">
+                        <a href="#menu" class="block text-primary-foreground/70 hover:text-primary-foreground transition-colors">Thực Đơn</a>
+                        <a href="#reservation" class="block text-primary-foreground/70 hover:text-primary-foreground transition-colors">Đặt Bàn</a>
+                        <a href="#contact" class="block text-primary-foreground/70 hover:text-primary-foreground transition-colors">Liên Hệ</a>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <h4 class="font-semibold">Giờ Mở Cửa</h4>
+                    <div class="space-y-2 text-sm text-primary-foreground/70">
+                        <p>Thứ 2 - Chủ Nhật</p>
+                        <p>10:00 - 22:00</p>
+                        <p class="text-primary">Phục vụ cả tuần</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <h4 class="font-semibold">Theo Dõi</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center hover:bg-primary/80 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://zalo.me/0708866767" target="_blank" class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center hover:bg-primary/80 transition-colors">
+                            <i class="fab fa-zalo"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center hover:bg-primary/80 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-sm text-primary-foreground/50">
+                <p>&copy; 2024 Cơm Nhà. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="fixed bottom-6 right-6 z-40 space-y-3">
+        <a href="https://zalo.me/0708866767" 
+           target="_blank"
+           class="block w-14 h-14 bg-blue-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-110 flex items-center justify-center">
+            <i class="fab fa-zalo text-xl"></i>
+        </a>
+        <a href="tel:0708866767" 
+           class="block w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-110 flex items-center justify-center">
+            <i class="fas fa-phone text-xl"></i>
+        </a>
+    </div>
+
+    <script>
+        // Menu data from the restaurant images
+        const menuData = {
+            com: [
+                { name: "Cơm sườn nướng", price: "35,000", category: "com", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Sườn heo nướng than hoa thơm ngon" },
+                { name: "Cơm gà nướng", price: "30,000", category: "com", image: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Gà nướng ngũ vị đặc biệt" },
+                { name: "Cơm thịt nướng", price: "32,000", category: "com", image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Thịt ba chỉ nướng mềm thơm" },
+                { name: "Cơm tấm", price: "28,000", category: "com", image: "https://images.unsplash.com/photo-1559847844-d90cbccdc4c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Cơm tấm Sài Gòn truyền thống" }
+            ],
+            bun: [
+                { name: "Bún bò Huế", price: "40,000", category: "bun", image: "https://images.unsplash.com/photo-1555126634-323283e090fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Nước dùng đậm đà, thịt bò tươi ngon" },
+                { name: "Bún riêu", price: "35,000", category: "bun", image: "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Bún riêu cua đồng ngon tuyệt" },
+                { name: "Miến gà", price: "30,000", category: "bun", image: "https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Miến gà tần bổ dưỡng" },
+                { name: "Bún thịt nướng", price: "38,000", category: "bun", image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Bún với thịt nướng và chả cua" }
+            ],
+            xao: [
+                { name: "Thịt bò xào lúa mì", price: "45,000", category: "xao", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Thịt bò mềm xào với rau củ tươi" },
+                { name: "Tôm xào sa tế", price: "55,000", category: "xao", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Tôm to xào sa tế cay ngon" },
+                { name: "Cá kho tộ", price: "50,000", category: "xao", image: "https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Cá kho tộ đậm đà miền Tây" },
+                { name: "Gà xào rau muống", price: "40,000", category: "xao", image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Gà xào rau muống giòn ngọt" }
+            ],
+            nuoc: [
+                { name: "Bia Saigon", price: "15,000", category: "nuoc", image: "https://images.unsplash.com/photo-1608270586620-248524c67de9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Bia Saigon lạnh giải nhiệt" },
+                { name: "Nước dừa tươi", price: "12,000", category: "nuoc", image: "https://images.unsplash.com/photo-1606131731446-5568d87113aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Nước dừa tươi mát lạnh" },
+                { name: "Trà đá", price: "5,000", category: "nuoc", image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Trà đá truyền thống" },
+                { name: "Nước cam vắt", price: "18,000", category: "nuoc", image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Cam vắt tươi vitamin C" }
+            ],
+            trangmieng: [
+                { name: "Chè ba màu", price: "15,000", category: "trangmieng", image: "https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Chè ba màu truyền thống" },
+                { name: "Dưa hấu", price: "8,000", category: "trangmieng", image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Dưa hấu tươi mát lạnh" },
+                { name: "Bánh flan", price: "12,000", category: "trangmieng", image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Bánh flan caramen thơm ngon" },
+                { name: "Chè thái", price: "18,000", category: "trangmieng", image: "https://images.unsplash.com/photo-1541414779316-956d4e4c3249?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200", description: "Chè thái đầy đủ topping" }
+            ]
+        };
+
+        let currentCategory = 'all';
+        let currentSearchTerm = '';
+
+        function renderMenu(items = null) {
+            const menuGrid = document.getElementById('menuGrid');
+            let allItems = [];
+            
+            if (items) {
+                allItems = items;
+            } else {
+                // Combine all categories
+                Object.values(menuData).forEach(categoryItems => {
+                    allItems = allItems.concat(categoryItems);
+                });
+            }
+            
+            menuGrid.innerHTML = allItems.map(item => `
+                <div class="menu-item bg-card rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all transform hover:scale-105" data-category="${item.category}" data-name="${item.name.toLowerCase()}">
+                    <img src="${item.image}" alt="${item.name}" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">${item.name}</h3>
+                        <p class="text-muted-foreground mb-4 text-sm">${item.description}</p>
+                        <div class="flex justify-between items-center">
+                            <div class="text-2xl font-bold text-primary">${item.price}đ</div>
+                            <button class="bg-accent text-accent-foreground px-4 py-2 rounded-lg hover:bg-accent/90 transition-colors" onclick="orderItem('${item.name}')">
+                                <i class="fas fa-plus mr-2"></i>Đặt
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCategory(category) {
+            currentCategory = category;
+            
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-primary', 'text-primary-foreground');
+                btn.classList.add('bg-muted', 'text-muted-foreground');
+            });
+            event.target.classList.add('active', 'bg-primary', 'text-primary-foreground');
+            event.target.classList.remove('bg-muted', 'text-muted-foreground');
+            
+            // Filter items
+            let filteredItems = [];
+            if (category === 'all') {
+                Object.values(menuData).forEach(categoryItems => {
+                    filteredItems = filteredItems.concat(categoryItems);
+                });
+            } else {
+                filteredItems = menuData[category] || [];
+            }
+            
+            // Apply search filter if exists
+            if (currentSearchTerm) {
+                filteredItems = filteredItems.filter(item => 
+                    item.name.toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
+                    item.description.toLowerCase().includes(currentSearchTerm.toLowerCase())
+                );
+            }
+            
+            renderMenu(filteredItems);
+        }
+
+        function filterMenu(searchTerm) {
+            currentSearchTerm = searchTerm;
+            
+            let filteredItems = [];
+            if (currentCategory === 'all') {
+                Object.values(menuData).forEach(categoryItems => {
+                    filteredItems = filteredItems.concat(categoryItems);
+                });
+            } else {
+                filteredItems = menuData[currentCategory] || [];
+            }
+            
+            if (searchTerm) {
+                filteredItems = filteredItems.filter(item => 
+                    item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    item.description.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+            }
+            
+            renderMenu(filteredItems);
+        }
+
+        function orderItem(itemName) {
+            const message = `Xin chào! Tôi muốn đặt món: ${itemName}`;
+            const zaloUrl = `https://zalo.me/0708866767?message=${encodeURIComponent(message)}`;
+            window.open(zaloUrl, '_blank');
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        function openReservation() {
+            document.getElementById('reservation').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initialize menu on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderMenu();
+            
+            // Handle form submission
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Cảm ơn bạn! Chúng tôi sẽ liên hệ xác nhận đặt bàn trong thời gian sớm nhất.');
+                // TODO: Implement actual form submission logic
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuButton = event.target.closest('.md\\:hidden');
+            
+            if (!mobileMenu.contains(event.target) && !menuButton) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

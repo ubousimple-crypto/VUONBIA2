@@ -1,0 +1,718 @@
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cơm Nhà - Quán Nhậu Bia Hơi Truyền Thống</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    border: "var(--border)",
+                    ring: "var(--ring)",
+                },
+                fontFamily: {
+                    sans: ["Inter", "sans-serif"],
+                }
+            },
+        }
+    };
+    </script>
+    <style>
+    :root {
+        --background: hsl(240 10% 3.9%);
+        --foreground: hsl(0 0% 98%);
+        --card: hsl(0 0% 100%);
+        --card-foreground: hsl(240 10% 3.9%);
+        --primary: hsl(142 76% 36%);
+        --primary-foreground: hsl(355.7 100% 97.3%);
+        --secondary: hsl(240 4.8% 95.9%);
+        --secondary-foreground: hsl(240 5.9% 10%);
+        --muted: hsl(240 4.8% 95.9%);
+        --muted-foreground: hsl(240 3.8% 46.1%);
+        --accent: hsl(20 100% 60%);
+        --accent-foreground: hsl(0 0% 98%);
+        --border: hsl(240 5.9% 90%);
+        --ring: hsl(142 76% 36%);
+        --radius: 8px;
+        
+        --carousel-green: #2D5A27;
+        --orange-accent: #FF6B35;
+        --wood-dark: #8B4513;
+        --wood-light: #D2B48C;
+    }
+
+    /* Carousel Styles - Exact clone from quannhautudo.com */
+    .embla {
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .embla__container {
+        display: flex;
+        gap: 20px;
+        padding: 0 20px;
+    }
+    
+    .embla__slide {
+        flex: 0 0 300px;
+        min-width: 0;
+    }
+    
+    @media (max-width: 768px) {
+        .embla__slide {
+            flex: 0 0 280px;
+        }
+        .embla__container {
+            gap: 15px;
+            padding: 0 15px;
+        }
+    }
+    
+    .food-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .food-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .carousel-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 18px;
+        color: var(--carousel-green);
+        transition: all 0.3s ease;
+        z-index: 10;
+    }
+    
+    .carousel-nav:hover {
+        background: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .carousel-nav.prev {
+        left: 10px;
+    }
+    
+    .carousel-nav.next {
+        right: 10px;
+    }
+    
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 30px;
+    }
+    
+    .carousel-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .carousel-dot.active {
+        background: var(--orange-accent);
+        transform: scale(1.2);
+    }
+
+    /* Auto-scroll animation */
+    .embla__container.scrolling {
+        transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Vietnamese text styling */
+    .vietnamese-text {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-feature-settings: "kern" 1, "liga" 1;
+    }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-background text-foreground vietnamese-text">
+    <!-- Header -->
+    <header class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-home text-2xl text-green-600"></i>
+                    <h1 class="text-xl font-bold text-gray-900">Cơm Nhà</h1>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#menu" class="text-gray-700 hover:text-green-600 font-medium">Thực đơn</a>
+                    <a href="#about" class="text-gray-700 hover:text-green-600 font-medium">Giới thiệu</a>
+                    <a href="#contact" class="text-gray-700 hover:text-green-600 font-medium">Liên hệ</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <a href="tel:0708866767" class="bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition-colors">
+                        <i class="fas fa-phone mr-2"></i>0708 866 767
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Vietnamese beer garden outdoor dining atmosphere -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&h=1080');">
+        </div>
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        
+        <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                Cơm Nhà
+            </h1>
+            <p class="text-xl md:text-2xl mb-4 text-orange-300">
+                Quán Nhậu Bia Hơi Truyền Thống
+            </p>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+                Hương vị đặc trưng miền Tây, không gian thoải mái, bia tươi mát lạnh
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#new-dishes" class="bg-orange-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-orange-600 transition-all transform hover:scale-105">
+                    Xem Món Mới
+                </a>
+                <a href="https://zalo.me/0708866767" target="_blank" class="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-gray-900 transition-all">
+                    Đặt Bàn Zalo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Món mới ra lò Section - Exact clone from quannhautudo.com -->
+    <section id="new-dishes" class="py-16" style="background-color: var(--carousel-green);">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center text-white mb-12">Món mới ra lò</h2>
+            
+            <div class="embla relative">
+                <div class="embla__container" id="carousel-container">
+                    <!-- Food Card 1 -->
+                    <div class="embla__slide">
+                        <div class="food-card">
+                            <!-- Vietnamese grilled food BBQ with smoky atmosphere -->
+                            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=250" alt="Ếch sốt tiêu gừng chua cay" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Ếch sốt tiêu gừng chua cay</h3>
+                                <p class="text-xl font-bold text-green-600 mb-3">159,000</p>
+                                <button class="w-full bg-orange-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-orange-600 transition-colors">
+                                    Đặt
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Food Card 2 -->
+                    <div class="embla__slide">
+                        <div class="food-card">
+                            <!-- Vietnamese seafood dish with herbs and vegetables -->
+                            <img src="https://pixabay.com/get/gc710e58419ae3c22904e14a1dc1fe1d35f1de1eaaeed2465dd58cab48ec41388581b4d948eac66b87227d756dae82207fe4b0f41b10b38876438c381407ea49e_1280.jpg" alt="Bach tuộc sốt thái cay" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Bach tuộc sốt thái cay</h3>
+                                <p class="text-xl font-bold text-green-600 mb-3">189,000</p>
+                                <button class="w-full bg-orange-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-orange-600 transition-colors">
+                                    Đặt
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Food Card 3 -->
+                    <div class="embla__slide">
+                        <div class="food-card">
+                            <!-- Vietnamese grilled meat skewers with marinade -->
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=250" alt="Lợn mán nướng giềng mẻ" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Lợn mán nướng giềng mẻ</h3>
+                                <p class="text-xl font-bold text-green-600 mb-3">185,000</p>
+                                <button class="w-full bg-orange-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-orange-600 transition-colors">
+                                    Đặt
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Food Card 4 -->
+                    <div class="embla__slide">
+                        <div class="food-card">
+                            <!-- Vietnamese fresh salad with vegetables and herbs -->
+                            <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=250" alt="Salad xà lách cá trích ép trứng" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Salad xà lách cá trích ép trứng</h3>
+                                <p class="text-xl font-bold text-green-600 mb-3">149,000</p>
+                                <button class="w-full bg-orange-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-orange-600 transition-colors">
+                                    Đặt
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Food Card 5 -->
+                    <div class="embla__slide">
+                        <div class="food-card">
+                            <!-- Vietnamese pork belly BBQ with crispy skin -->
+                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=250" alt="Thịt dải heo cháy tỏi" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Thịt dải heo cháy tỏi</h3>
+                                <p class="text-xl font-bold text-green-600 mb-3">189,000</p>
+                                <button class="w-full bg-orange-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-orange-600 transition-colors">
+                                    Đặt
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Food Card 6 -->
+                    <div class="embla__slide">
+                        <div class="food-card">
+                            <!-- Vietnamese grilled mushrooms with garlic -->
+                            <img src="https://images.unsplash.com/photo-1506084868230-bb9d95c24759?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=250" alt="Nầm sữa cháy tỏi" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Nầm sữa cháy tỏi</h3>
+                                <p class="text-xl font-bold text-green-600 mb-3">199,000</p>
+                                <button class="w-full bg-orange-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-orange-600 transition-colors">
+                                    Đặt
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <button class="carousel-nav prev" id="prev-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-nav next" id="next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Dots Indicator -->
+            <div class="carousel-dots" id="carousel-dots">
+                <div class="carousel-dot active" data-index="0"></div>
+                <div class="carousel-dot" data-index="1"></div>
+                <div class="carousel-dot" data-index="2"></div>
+            </div>
+
+            <!-- View Menu Button -->
+            <div class="text-center mt-12">
+                <a href="#menu" class="inline-block border-2 border-orange-500 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-orange-500 transition-all">
+                    XEM THỰC ĐƠN
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Categories Section -->
+    <section id="menu" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Thực Đơn Đặc Sản</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cơm Category -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <!-- Vietnamese rice dishes with meat and vegetables -->
+                    <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=250" alt="Cơm đặc sản" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Cơm</h3>
+                        <p class="text-gray-600 mb-4">Các món cơm đặc trưng miền Tây với thịt nướng, gà, heo quay</p>
+                        <p class="text-lg font-semibold text-green-600">Từ 45.000đ</p>
+                    </div>
+                </div>
+
+                <!-- Bún/Miến Category -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <!-- Vietnamese noodle soup with herbs and meat -->
+                    <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=250" alt="Bún miến" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Bún/Miến</h3>
+                        <p class="text-gray-600 mb-4">Bún thịt nướng, miến gà, bún mắm nêm đậm đà hương vị</p>
+                        <p class="text-lg font-semibold text-green-600">Từ 35.000đ</p>
+                    </div>
+                </div>
+
+                <!-- Món Xào Category -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <!-- Vietnamese stir-fried dishes with vegetables and meat -->
+                    <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=250" alt="Món xào" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Món Xào</h3>
+                        <p class="text-gray-600 mb-4">Rau muống xào tỏi, thịt bò xào lá lốt, hến xào đậu hũ</p>
+                        <p class="text-lg font-semibold text-green-600">Từ 55.000đ</p>
+                    </div>
+                </div>
+
+                <!-- Nước Uống Category -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <!-- Beer bottles and glasses in Vietnamese setting -->
+                    <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=250" alt="Nước uống và bia" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Nước Uống</h3>
+                        <p class="text-gray-600 mb-4">Bia tươi, nước ngọt, trà đá, nước chanh muối</p>
+                        <p class="text-lg font-semibold text-green-600">Từ 15.000đ</p>
+                    </div>
+                </div>
+
+                <!-- Tráng Miệng Category -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <!-- Vietnamese dessert with tropical fruits -->
+                    <img src="https://images.unsplash.com/photo-1488900128323-21503983a07e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=250" alt="Tráng miệng" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Tráng Miệng</h3>
+                        <p class="text-gray-600 mb-4">Chè ba màu, dưa hấu, sầu riêng, trái cây theo mùa</p>
+                        <p class="text-lg font-semibold text-green-600">Từ 25.000đ</p>
+                    </div>
+                </div>
+
+                <!-- Món Nướng Category -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <!-- Vietnamese BBQ outdoor grilling -->
+                    <img src="https://pixabay.com/get/gd89d64ecd97977e81e0f0efffe9e51a907f6db235852e5556af8914bd342d6a6bc4e04db5c12100f11dbaccf2b685524626553837aa2c60af0e23192b98b401a_1280.jpg" alt="Món nướng" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Món Nướng</h3>
+                        <p class="text-gray-600 mb-4">Thịt nướng lá chuối, cá lóc nướng trui, gà nướng lu</p>
+                        <p class="text-lg font-semibold text-green-600">Từ 85.000đ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Về Cơm Nhà</h2>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Cơm Nhà là quán nhậu gia đình mang đậm hương vị miền Tây, 
+                        nơi bạn có thể thưởng thức những món ăn truyền thống được chế biến 
+                        từ nguyên liệu tươi ngon nhất.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                        Với không gian thoải mái, thân thiện và đội ngũ nhân viên nhiệt tình, 
+                        chúng tôi cam kết mang đến cho bạn những trải nghiệm ẩm thực đáng nhớ.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-green-600">5+</div>
+                            <div class="text-gray-600">Năm kinh nghiệm</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-green-600">50+</div>
+                            <div class="text-gray-600">Món ăn đa dạng</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <!-- Outdoor restaurant atmosphere with Vietnamese setting -->
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400" alt="Không gian quán Cơm Nhà" class="rounded-xl shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">Liên Hệ Đặt Bàn</h2>
+                <p class="text-xl text-gray-300">Hãy đến và trải nghiệm hương vị đặc biệt của chúng tôi</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="bg-gray-800 p-6 rounded-xl">
+                    <i class="fas fa-map-marker-alt text-3xl text-orange-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Địa chỉ</h3>
+                    <p class="text-gray-300">Số 7 Nguyễn Sơn 4, Lý Thái Tổ Mỹ Đại,<br>P. Long Xuyên, TP. An Giang</p>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-xl">
+                    <i class="fas fa-phone text-3xl text-orange-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Điện thoại</h3>
+                    <a href="tel:0708866767" class="text-orange-500 hover:text-orange-400 text-lg font-medium">
+                        0708 866 767
+                    </a>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-xl">
+                    <i class="fab fa-zalo text-3xl text-orange-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Zalo</h3>
+                    <a href="https://zalo.me/0708866767" target="_blank" class="text-orange-500 hover:text-orange-400 text-lg font-medium">
+                        Đặt bàn qua Zalo
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <h3 class="text-2xl font-semibold mb-4">Giờ mở cửa</h3>
+                <p class="text-lg text-gray-300">Thứ 2 - Chủ nhật: 10:00 - 22:00</p>
+                <p class="text-gray-400 mt-2">Nghỉ các ngày lễ lớn</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <i class="fas fa-home text-2xl text-orange-500"></i>
+                <h3 class="text-2xl font-bold">Cơm Nhà</h3>
+            </div>
+            <p class="text-gray-400">
+                © 2024 Cơm Nhà. Tất cả quyền được bảo lưu. 
+                Quán nhậu gia đình mang hương vị miền Tây đích thực.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+    // Carousel functionality with touch support and auto-scroll
+    (function() {
+        const container = document.getElementById('carousel-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const dots = document.querySelectorAll('.carousel-dot');
+        
+        let currentIndex = 0;
+        let autoScrollInterval;
+        let isUserInteracting = false;
+        
+        // Get number of cards to show based on screen size
+        function getCardsToShow() {
+            const width = window.innerWidth;
+            if (width >= 1024) return 4; // Desktop
+            if (width >= 768) return 3;  // Tablet
+            if (width >= 640) return 2;  // Small tablet
+            return 1; // Mobile
+        }
+        
+        // Get total slides considering cards to show
+        function getTotalSlides() {
+            const totalCards = container.children.length;
+            const cardsToShow = getCardsToShow();
+            return Math.ceil(totalCards / cardsToShow);
+        }
+        
+        // Update slide position
+        function updateSlide() {
+            const cardWidth = 320; // 300px + 20px gap
+            const cardsToShow = getCardsToShow();
+            const offset = currentIndex * cardWidth * cardsToShow;
+            
+            container.style.transform = `translateX(-${offset}px)`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+        
+        // Go to next slide
+        function nextSlide() {
+            const totalSlides = getTotalSlides();
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlide();
+        }
+        
+        // Go to previous slide
+        function prevSlide() {
+            const totalSlides = getTotalSlides();
+            currentIndex = currentIndex === 0 ? totalSlides - 1 : currentIndex - 1;
+            updateSlide();
+        }
+        
+        // Start auto-scroll
+        function startAutoScroll() {
+            if (!isUserInteracting) {
+                autoScrollInterval = setInterval(nextSlide, 5000);
+            }
+        }
+        
+        // Stop auto-scroll
+        function stopAutoScroll() {
+            clearInterval(autoScrollInterval);
+        }
+        
+        // Event listeners
+        prevBtn.addEventListener('click', () => {
+            isUserInteracting = true;
+            stopAutoScroll();
+            prevSlide();
+            setTimeout(() => {
+                isUserInteracting = false;
+                startAutoScroll();
+            }, 3000);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            isUserInteracting = true;
+            stopAutoScroll();
+            nextSlide();
+            setTimeout(() => {
+                isUserInteracting = false;
+                startAutoScroll();
+            }, 3000);
+        });
+        
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                isUserInteracting = true;
+                stopAutoScroll();
+                currentIndex = index;
+                updateSlide();
+                setTimeout(() => {
+                    isUserInteracting = false;
+                    startAutoScroll();
+                }, 3000);
+            });
+        });
+        
+        // Touch/swipe support
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+        
+        container.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+            isUserInteracting = true;
+            stopAutoScroll();
+        }, { passive: true });
+        
+        container.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX;
+        }, { passive: true });
+        
+        container.addEventListener('touchend', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const diffX = startX - currentX;
+            const threshold = 50;
+            
+            if (Math.abs(diffX) > threshold) {
+                if (diffX > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+            
+            setTimeout(() => {
+                isUserInteracting = false;
+                startAutoScroll();
+            }, 3000);
+        });
+        
+        // Mouse events for desktop
+        container.addEventListener('mouseenter', () => {
+            isUserInteracting = true;
+            stopAutoScroll();
+        });
+        
+        container.addEventListener('mouseleave', () => {
+            isUserInteracting = false;
+            startAutoScroll();
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                isUserInteracting = true;
+                stopAutoScroll();
+                prevSlide();
+                setTimeout(() => {
+                    isUserInteracting = false;
+                    startAutoScroll();
+                }, 3000);
+            } else if (e.key === 'ArrowRight') {
+                isUserInteracting = true;
+                stopAutoScroll();
+                nextSlide();
+                setTimeout(() => {
+                    isUserInteracting = false;
+                    startAutoScroll();
+                }, 3000);
+            }
+        });
+        
+        // Window resize handler
+        window.addEventListener('resize', () => {
+            updateSlide();
+        });
+        
+        // Initialize
+        updateSlide();
+        startAutoScroll();
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+    })();
+    </script>
+</body>
+</html>

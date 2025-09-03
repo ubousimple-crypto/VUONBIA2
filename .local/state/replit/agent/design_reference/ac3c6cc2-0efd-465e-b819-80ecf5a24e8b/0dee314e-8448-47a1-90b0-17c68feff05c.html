@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cơm Nhà - Quán Cơm Miền Tây Truyền Thống</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    popover: {
+                        DEFAULT: "var(--popover)",
+                        foreground: "var(--popover-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    destructive: {
+                        DEFAULT: "var(--destructive)",
+                        foreground: "var(--destructive-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                }
+            },
+        }
+    };
+    </script>
+    <style>
+        :root {
+            --background: hsl(45 27% 96%);
+            --foreground: hsl(20 14% 24%);
+            --card: hsl(0 0% 100%);
+            --card-foreground: hsl(20 14% 24%);
+            --popover: hsl(0 0% 100%);
+            --popover-foreground: hsl(20 14% 24%);
+            --primary: hsl(120 43% 15%);
+            --primary-foreground: hsl(60 100% 97%);
+            --secondary: hsl(30 54% 64%);
+            --secondary-foreground: hsl(20 14% 24%);
+            --muted: hsl(45 27% 90%);
+            --muted-foreground: hsl(25 5% 45%);
+            --accent: hsl(30 54% 64%);
+            --accent-foreground: hsl(20 14% 24%);
+            --destructive: hsl(0 84% 60%);
+            --destructive-foreground: hsl(60 100% 97%);
+            --border: hsl(45 27% 82%);
+            --input: hsl(45 27% 82%);
+            --ring: hsl(120 43% 15%);
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, var(--primary) 0%, hsl(120 43% 20%) 100%);
+        }
+
+        .dish-card {
+            transition: all 0.3s ease;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(45, 90, 39, 0.15);
+        }
+
+        .location-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(45, 90, 39, 0.12);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: hsl(120 43% 12%);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--accent);
+            color: var(--accent-foreground);
+            border: 2px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .modal {
+            display: none;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <span class="text-primary-foreground font-bold text-xl">C</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-primary">Cơm Nhà</h1>
+                        <p class="text-xs text-muted-foreground">Cơm miền Tây</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-foreground hover:text-primary transition-colors font-medium">Trang chủ</a>
+                    <a href="#menu" class="text-foreground hover:text-primary transition-colors font-medium">Thực đơn</a>
+                    <a href="#locations" class="text-foreground hover:text-primary transition-colors font-medium">Cơ sở</a>
+                    <a href="#contact" class="text-foreground hover:text-primary transition-colors font-medium">Liên hệ</a>
+                </nav>
+
+                <!-- Contact & Mobile Menu -->
+                <div class="flex items-center space-x-4">
+                    <a href="tel:0708866767" class="hidden sm:flex items-center space-x-2 text-primary font-semibold">
+                        <span>📞</span>
+                        <span>0708 866 767</span>
+                    </a>
+                    <button id="booking-btn" class="btn-primary px-4 py-2 rounded-lg font-medium">Đặt bàn</button>
+                    <button id="mobile-menu-btn" class="md:hidden p-2">
+                        <span class="block w-6 h-0.5 bg-foreground mb-1"></span>
+                        <span class="block w-6 h-0.5 bg-foreground mb-1"></span>
+                        <span class="block w-6 h-0.5 bg-foreground"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden fixed top-16 left-0 w-full h-screen bg-white z-40">
+            <nav class="p-4 space-y-4">
+                <a href="#home" class="block py-3 text-lg font-medium text-foreground border-b border-border">Trang chủ</a>
+                <a href="#menu" class="block py-3 text-lg font-medium text-foreground border-b border-border">Thực đơn</a>
+                <a href="#locations" class="block py-3 text-lg font-medium text-foreground border-b border-border">Cơ sở</a>
+                <a href="#contact" class="block py-3 text-lg font-medium text-foreground border-b border-border">Liên hệ</a>
+                <a href="tel:0708866767" class="block py-3 text-lg font-medium text-primary">📞 0708 866 767</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background decoration -->
+        <div class="absolute inset-0 opacity-10">
+            <!-- Traditional Vietnamese pattern illustration -->
+            <div class="w-full h-full bg-repeat" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22><g fill=%22%23fff%22 fill-opacity=%220.1%22><circle cx=%2230%22 cy=%2230%22 r=%224%22/></g></svg>')"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center text-white">
+                <h1 class="hero-title text-5xl md:text-7xl font-bold mb-6">
+                    Không có gì<br>
+                    <span class="text-accent">quý hơn</span><br>
+                    <span class="text-2xl md:text-3xl font-normal">cơm nhà</span>
+                </h1>
+                <p class="hero-subtitle text-xl md:text-2xl mb-8 text-white/90">
+                    Hương vị miền Tây đậm đà trong từng món ăn
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button class="btn-primary px-8 py-4 rounded-lg text-lg font-semibold">
+                        Xem thực đơn
+                    </button>
+                    <a href="https://zalo.me/0708866767" target="_blank" class="btn-secondary px-8 py-4 rounded-lg text-lg font-semibold">
+                        Đặt qua Zalo
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-background">
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Món mới ra lò</h2>
+                <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                    Những món ăn đặc sản miền Tây được chế biến tươi ngon hàng ngày
+                </p>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+                <!-- Dish Card 1 -->
+                <div class="dish-card bg-card rounded-xl overflow-hidden shadow-lg" data-mock="true">
+                    <!-- Fresh Vietnamese seafood stir-fry with vegetables -->
+                    <img src="https://pixabay.com/get/gdf2981cd991cfc567cac44dbd84b5e0ab90b8d643fd25b79125de208c9ed4f3080dae0419b6b2f491a3400affdd7821cd1743ab939ff44cd3066ef58aa9c97e3_1280.jpg" 
+                         alt="Ếch sốt tiêu gừng chua cay" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Ếch sốt tiêu gừng chua cay</h3>
+                        <p class="text-accent text-xl font-bold mb-4">159.000₫</p>
+                        <button class="btn-primary w-full py-2 px-4 rounded-lg font-medium">
+                            + Đặt
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dish Card 2 -->
+                <div class="dish-card bg-card rounded-xl overflow-hidden shadow-lg" data-mock="true">
+                    <!-- Vietnamese grilled seafood with herbs and spices -->
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300" 
+                         alt="Bach tuộc sốt thái cay" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Bach tuộc sốt thái cay</h3>
+                        <p class="text-accent text-xl font-bold mb-4">189.000₫</p>
+                        <button class="btn-primary w-full py-2 px-4 rounded-lg font-medium">
+                            + Đặt
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dish Card 3 -->
+                <div class="dish-card bg-card rounded-xl overflow-hidden shadow-lg" data-mock="true">
+                    <!-- Vietnamese grilled pork with vegetables -->
+                    <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300" 
+                         alt="Lòn mán nướng giềng mẻ" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Lòn mán nướng giềng mẻ</h3>
+                        <p class="text-accent text-xl font-bold mb-4">185.000₫</p>
+                        <button class="btn-primary w-full py-2 px-4 rounded-lg font-medium">
+                            + Đặt
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dish Card 4 -->
+                <div class="dish-card bg-card rounded-xl overflow-hidden shadow-lg" data-mock="true">
+                    <!-- Vietnamese fresh salad with mixed vegetables -->
+                    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300" 
+                         alt="Salad xà lách cá trích ép trứng" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Salad xà lách cá trích ép trứng</h3>
+                        <p class="text-accent text-xl font-bold mb-4">149.000₫</p>
+                        <button class="btn-primary w-full py-2 px-4 rounded-lg font-medium">
+                            + Đặt
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dish Card 5 -->
+                <div class="dish-card bg-card rounded-xl overflow-hidden shadow-lg" data-mock="true">
+                    <!-- Vietnamese grilled beef with herbs -->
+                    <img src="https://pixabay.com/get/g50dcef4be900217f2e26a89db65d5b315a8a49fecda6a476e6a94ee109b3e090612424ad729a64f4037a04aa5b019bebdb13502b12a1b8469830078d4b72ce4a_1280.jpg" 
+                         alt="Gỏi bò cà pháo đồng quê" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Gỏi bò cà pháo đồng quê</h3>
+                        <p class="text-accent text-xl font-bold mb-4">169.000₫</p>
+                        <button class="btn-primary w-full py-2 px-4 rounded-lg font-medium">
+                            + Đặt
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dish Card 6 -->
+                <div class="dish-card bg-card rounded-xl overflow-hidden shadow-lg" data-mock="true">
+                    <!-- Vietnamese stir-fried water spinach with beef -->
+                    <img src="https://pixabay.com/get/g51d9053d23378daef66982659455d5b9f6d7e29a8eba21695f6fa5ec58d85c72ad5cc649219c1d996c000cc448aa6f631c5ec643799d23795dcf28bd36fc1397_1280.jpg" 
+                         alt="Trâu xào rau muống" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Trâu xào rau muống</h3>
+                        <p class="text-accent text-xl font-bold mb-4">159.000₫</p>
+                        <button class="btn-primary w-full py-2 px-4 rounded-lg font-medium">
+                            + Đặt
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dish Card 7 -->
+                <div class="dish-card bg-card rounded-xl overflow-hidden shadow-lg" data-mock="true">
+                    <!-- Vietnamese grilled mushrooms with spices -->
+                    <img src="https://pixabay.com/get/g5e23a637931a93f0f6ca87bd5d4602a490439587b8ffe944db790a7ef997bca9c2f0dd3734da7fbc33654fde2e4b337484f509219120c98062f9f1a869c46c36_1280.jpg" 
+                         alt="Nầm sữa nướng giềng mẻ" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Nầm sữa nướng giềng mẻ</h3>
+                        <p class="text-accent text-xl font-bold mb-4">189.000₫</p>
+                        <button class="btn-primary w-full py-2 px-4 rounded-lg font-medium">
+                            + Đặt
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dish Card 8 -->
+                <div class="dish-card bg-card rounded-xl overflow-hidden shadow-lg" data-mock="true">
+                    <!-- Vietnamese grilled shrimp with salt and herbs -->
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300" 
+                         alt="Tôm sú ủ muối thảo mộc" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Tôm sú ủ muối thảo mộc</h3>
+                        <p class="text-accent text-xl font-bold mb-4">249.000₫</p>
+                        <button class="btn-primary w-full py-2 px-4 rounded-lg font-medium">
+                            + Đặt
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View Full Menu Button -->
+            <div class="text-center">
+                <button class="btn-secondary px-8 py-4 rounded-lg text-lg font-semibold">
+                    XEM THỰC ĐƠN ĐẦY ĐỦ
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section id="locations" class="py-20 bg-muted">
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">3 Cơ sở</h2>
+                <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                    Cơm Nhà tự hào phục vụ quý khách tại các địa điểm thuận tiện
+                </p>
+            </div>
+
+            <!-- Locations Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Location 1 -->
+                <div class="location-card bg-card rounded-xl overflow-hidden shadow-lg transition-all duration-300" data-mock="true">
+                    <!-- Vietnamese restaurant interior with warm lighting -->
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=250" 
+                         alt="Cơ sở Nguyễn Sơn 4" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">ĐANG MỞ</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-foreground mb-2">Số 7 Nguyễn Sơn 4</h3>
+                        <p class="text-muted-foreground text-sm mb-4">
+                            Cơm Nhà cơ sở chính - Lý Thái Tổ Mỹ Đại, P. Long Xuyên, TP. An Giang
+                        </p>
+                        <div class="flex gap-2">
+                            <button class="btn-primary flex-1 py-2 px-4 rounded-lg font-medium text-sm">
+                                Đặt bàn ngay
+                            </button>
+                            <button class="btn-secondary px-3 py-2 rounded-lg text-sm">
+                                📍 Bản đồ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location 2 -->
+                <div class="location-card bg-card rounded-xl overflow-hidden shadow-lg transition-all duration-300" data-mock="true">
+                    <!-- Vietnamese restaurant outdoor seating area -->
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=250" 
+                         alt="Cơ sở Trần Hưng Đạo" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">ĐANG MỞ</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-foreground mb-2">125 Trần Hưng Đạo</h3>
+                        <p class="text-muted-foreground text-sm mb-4">
+                            Cơ sở 2 - Trung tâm thành phố Long Xuyên, An Giang
+                        </p>
+                        <div class="flex gap-2">
+                            <button class="btn-primary flex-1 py-2 px-4 rounded-lg font-medium text-sm">
+                                Đặt bàn ngay
+                            </button>
+                            <button class="btn-secondary px-3 py-2 rounded-lg text-sm">
+                                📍 Bản đồ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location 3 -->
+                <div class="location-card bg-card rounded-xl overflow-hidden shadow-lg transition-all duration-300" data-mock="true">
+                    <!-- Vietnamese traditional restaurant interior with wooden furniture -->
+                    <img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=250" 
+                         alt="Cơ sở Lê Lợi" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">ĐANG MỞ</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-foreground mb-2">89 Lê Lợi</h3>
+                        <p class="text-muted-foreground text-sm mb-4">
+                            Cơ sở 3 - Gần chợ Long Xuyên, thuận tiện đi lại
+                        </p>
+                        <div class="flex gap-2">
+                            <button class="btn-primary flex-1 py-2 px-4 rounded-lg font-medium text-sm">
+                                Đặt bàn ngay
+                            </button>
+                            <button class="btn-secondary px-3 py-2 rounded-lg text-sm">
+                                📍 Bản đồ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 bg-background">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">
+                        Hương vị<br>
+                        <span class="text-accent">miền Tây</span><br>
+                        đậm đà
+                    </h2>
+                    <p class="text-lg text-muted-foreground mb-6 leading-relaxed">
+                        Cơm Nhà tự hào mang đến những món ăn truyền thống miền Tây với hương vị đậm đà, 
+                        được chế biến từ nguyên liệu tươi ngon nhất. Mỗi món ăn đều chứa đựng tình yêu 
+                        và sự tận tâm của đầu bếp.
+                    </p>
+                    <p class="text-lg text-muted-foreground mb-8 leading-relaxed">
+                        Từ những món cơm dân dã đến các đặc sản nổi tiếng, chúng tôi cam kết mang đến 
+                        trải nghiệm ẩm thực tuyệt vời cho mọi thực khách.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="btn-primary px-6 py-3 rounded-lg font-medium">
+                            Tìm hiểu thêm
+                        </button>
+                        <a href="tel:0708866767" class="btn-secondary px-6 py-3 rounded-lg font-medium text-center">
+                            📞 Liên hệ ngay
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:pl-8">
+                    <!-- Traditional Vietnamese kitchen with cooking preparation -->
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600" 
+                         alt="Bếp truyền thống miền Tây" class="rounded-2xl shadow-2xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-primary text-primary-foreground py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-accent rounded-lg flex items-center justify-center">
+                            <span class="text-foreground font-bold text-xl">C</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Cơm Nhà</h3>
+                            <p class="text-sm opacity-80">Cơm miền Tây</p>
+                        </div>
+                    </div>
+                    <p class="text-sm opacity-80 leading-relaxed">
+                        Hương vị miền Tây đậm đà trong từng món ăn. 
+                        Nơi lưu giữ tinh hoa ẩm thực truyền thống.
+                    </p>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Liên hệ</h4>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center space-x-2">
+                            <span>📞</span>
+                            <span>0708 866 767</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span>📧</span>
+                            <span>info@comnha.vn</span>
+                        </div>
+                        <div class="flex items-start space-x-2">
+                            <span>📍</span>
+                            <span>Số 7 Nguyễn Sơn 4, Lý Thái Tổ Mỹ Đại<br>P. Long Xuyên, TP. An Giang</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Liên kết</h4>
+                    <div class="space-y-2 text-sm">
+                        <a href="#home" class="block hover:text-accent transition-colors">Trang chủ</a>
+                        <a href="#menu" class="block hover:text-accent transition-colors">Thực đơn</a>
+                        <a href="#locations" class="block hover:text-accent transition-colors">Cơ sở</a>
+                        <a href="#contact" class="block hover:text-accent transition-colors">Liên hệ</a>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Kết nối</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://zalo.me/0708866767" target="_blank" 
+                           class="w-10 h-10 bg-accent rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity">
+                            <span class="text-foreground font-bold">Z</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-accent rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity">
+                            <span class="text-foreground font-bold">f</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-accent rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity">
+                            <span class="text-foreground font-bold">📷</span>
+                        </a>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-sm opacity-80 mb-2">Giờ mở cửa:</p>
+                        <p class="text-sm">7:00 - 22:00 (Hàng ngày)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-primary-foreground/20 mt-12 pt-8 text-center">
+                <p class="text-sm opacity-80">
+                    © 2024 Cơm Nhà. Tất cả quyền được bảo lưu.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-primary">Đặt bàn</h3>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+
+            <form class="space-y-6" data-implementation="Should validate and submit booking request">
+                <!-- Customer Info -->
+                <div>
+                    <h4 class="text-lg font-semibold text-foreground mb-4">Thông tin khách hàng</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-foreground mb-2">Họ tên *</label>
+                            <input type="text" class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" 
+                                   placeholder="Nhập họ tên" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-foreground mb-2">Số điện thoại *</label>
+                            <input type="tel" class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" 
+                                   placeholder="Nhập số điện thoại" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking Info -->
+                <div>
+                    <h4 class="text-lg font-semibold text-foreground mb-4">Thông tin đặt bàn</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-foreground mb-2">Cơ sở</label>
+                            <select class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option>Số 7 Nguyễn Sơn 4 - Long Xuyên</option>
+                                <option>125 Trần Hưng Đạo - Long Xuyên</option>
+                                <option>89 Lê Lợi - Long Xuyên</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-foreground mb-2">Số khách</label>
+                                <select class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <option>2 người</option>
+                                    <option>3 người</option>
+                                    <option>4 người</option>
+                                    <option>5 người</option>
+                                    <option>6+ người</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-foreground mb-2">Ngày đến</label>
+                                <input type="date" class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-foreground mb-2">Giờ đến</label>
+                            <select class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option>10:00</option>
+                                <option>11:00</option>
+                                <option>12:00</option>
+                                <option>13:00</option>
+                                <option>17:00</option>
+                                <option>18:00</option>
+                                <option>19:00</option>
+                                <option>20:00</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-foreground mb-2">Ghi chú</label>
+                            <textarea class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" 
+                                      rows="3" placeholder="Yêu cầu đặc biệt (tùy chọn)"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-primary w-full py-4 rounded-lg text-lg font-semibold">
+                    Xác nhận đặt bàn
+                </button>
+                
+                <p class="text-xs text-muted-foreground text-center">
+                    Bằng cách đặt bàn, bạn đồng ý với điều khoản sử dụng của chúng tôi
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // TODO: Implement business logic, API calls, or state management
+        
+        (function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn?.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+
+            // Booking modal
+            const bookingBtn = document.getElementById('booking-btn');
+            const bookingModal = document.getElementById('booking-modal');
+            const closeModal = document.getElementById('close-modal');
+            
+            bookingBtn?.addEventListener('click', () => {
+                bookingModal.classList.add('active');
+            });
+            
+            closeModal?.addEventListener('click', () => {
+                bookingModal.classList.remove('active');
+            });
+            
+            bookingModal?.addEventListener('click', (e) => {
+                if (e.target === bookingModal) {
+                    bookingModal.classList.remove('active');
+                }
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        // Close mobile menu if open
+                        mobileMenu.classList.remove('active');
+                    }
+                });
+            });
+
+            // Add order functionality to dish cards
+            document.querySelectorAll('.dish-card button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const dishCard = this.closest('.dish-card');
+                    const dishName = dishCard.querySelector('h3').textContent;
+                    const dishPrice = dishCard.querySelector('.text-accent').textContent;
+                    
+                    // TODO: Implement add to cart or order functionality
+                    alert(`Đã thêm "${dishName}" - ${dishPrice} vào giỏ hàng!`);
+                });
+            });
+
+            // Set default date to today
+            const dateInput = document.querySelector('input[type="date"]');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.value = today;
+                dateInput.min = today;
+            }
+        })();
+    </script>
+</body>
+</html>

@@ -34,4 +34,9 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
+
+  // <-- Thêm đoạn này vào đây
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+  },
 });
