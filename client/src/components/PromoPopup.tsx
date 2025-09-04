@@ -20,7 +20,7 @@ export default function PromoPopup() {
           &times;
         </button>
         <img
-          src="/images/promo-popup.png"
+          src="BIA.jpg" // Đường dẫn ảnh bạn muốn dùng
           alt="Popup Ưu Đãi"
           className="w-full h-auto rounded-lg shadow-lg"
         />
