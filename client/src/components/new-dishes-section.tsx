@@ -61,7 +61,7 @@ export function VuonBia() {
             <strong>bia tươi, mồi bén, không gian chill</strong> – ngồi là không muốn về!
             <br />
             <span className="inline-block mt-3 px-3 py-1 bg-yellow-300 text-yellow-900 font-bold rounded shadow">
-              🎈 Quán có decor tiệc sinh nhật miễn phí 🎂
+              🎈 Quán có decor tiệc sinh nhật miễn phí 
             </span>
           </p>
         </div>
