@@ -7,12 +7,13 @@ import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
 import MenuPage from "@/pages/menu";
 import LocationDetail from './pages/VuonbiaBVD';
-
+import SinhNhatPage from "./pages/SinhNhat";
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/menu" component={MenuPage} />
+       <Route path="/sinh-nhat" component={SinhNhatPage} />
       <Route path="/location/:slug" component={LocationDetail} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
