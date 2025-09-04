@@ -1,35 +1,60 @@
 import React, { useState, useEffect } from 'react';
 
-export default function PromoPopup() {
-  const [isVisible, setIsVisible] = useState(false);
+function PromoPopup() {
+  const [isVisible, setIsVisible] = useState(true);
 
+  const handleClose = () => setIsVisible(false);
+
+  // Ngăn scroll khi mở popup
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 2000); // Hiện popup sau 2s
-    return () => clearTimeout(timer);
-  }, []);
+    if (isVisible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    // Cleanup khi component unmount
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isVisible]);
 
   if (!isVisible) return null;
 
   return (
     <>
-      {/* Overlay nền mờ full màn hình */}
-      <div className="fixed inset-0 z-40 bg-black bg-opacity-60"></div>
+      {/* Overlay */}
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        {/* Popup content */}
+        <div className="relative w-[400px] max-w-[90vw] max-h-[80vh] overflow-auto rounded-lg shadow-lg  p-4">
+          {/* Close button */}
+          <button
+            onClick={handleClose}
+            className="absolute top-0 right-0 w-8 h-8 flex items-center justify-center bg-black border-2 border-white  bg-opacity-70 rounded-full hover:bg-opacity-90"
+            aria-label="Close popup"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="white"
+              className="w-4 h-4"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
 
-      {/* Popup canh giữa màn hình, kích thước vừa phải */}
-      <div className="fixed top-1/2 left-1/2 z-50 w-[700px] max-w-[90vw] max-h-[90vh] overflow-auto -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg bg-white">
-        <button
-          onClick={() => setIsVisible(false)}
-          className="absolute top-3 right-3 text-black text-2xl font-bold"
-          aria-label="Đóng popup"
-        >
-          &times;
-        </button>
-        <img
-          src="BIA.jpg" // Đường dẫn ảnh bạn muốn dùng
-          alt="Popup Ưu Đãi"
-          className="w-full h-auto max-h-[85vh] object-contain"
-        />
+          {/* Popup image */}
+          <img
+            src="BIA.jpg"
+            alt="Promo"
+            className="w-full object-contain"
+          />
+        </div>
       </div>
     </>
   );
 }
+
+export default PromoPopup;
