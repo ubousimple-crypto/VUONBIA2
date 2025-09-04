@@ -30,7 +30,7 @@ export default function HeroSection() {
   }, [emblaApi]);
 
   return (
-    <section className="relative" style={{ paddingTop: "64px" }}>
+    <section className="relative w-full" style={{ paddingTop: "64px" }}>
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {heroImages.map((src, index) => (
