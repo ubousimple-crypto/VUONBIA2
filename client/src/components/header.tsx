@@ -1,22 +1,12 @@
-import { useState, useEffect } from "react";
 import { Utensils, Menu, X, Phone } from "lucide-react";
-
+import { useState } from "react";
 interface HeaderProps {
+  isScrolled: boolean;
   onBookingClick: () => void;
 }
 
-export default function Header({ onBookingClick }: HeaderProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
+export default function Header({ onBookingClick, isScrolled }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // Bắt sự kiện scroll để đổi màu header khi scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -35,25 +25,50 @@ export default function Header({ onBookingClick }: HeaderProps) {
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between py-3">
           {/* Logo */}
-          <div className="flex items-center space-x-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-            <div className="w-12 h-12 rounded-full overflow-hidden  ">
+          <div
+            className="flex items-center space-x-2 cursor-pointer"
+            onClick={() =>
+              window.scrollTo({ top: 0, behavior: "smooth" })
+            }
+          >
+            <div className="w-12 h-12 rounded-full overflow-hidden">
               <img
                 src="/logo-vuon-bia.jpg"
                 alt="Logo Vườn Bia"
                 className="w-full h-full object-cover scale-150 transform"
-
               />
             </div>
-            <h1 className="text-white font-bold text-lg tracking-wide">VƯỜN BIA</h1>
+            <h1 className="text-white font-bold text-lg tracking-wide">
+              VƯỜN BIA
+            </h1>
           </div>
-
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex space-x-8 font-semibold text-sm">
-            <button onClick={() => scrollToSection("thuc-don")} className="hover:text-yellow-400 transition-colors">THỰC ĐƠN</button>
-            <button onClick={() => scrollToSection("co-so")} className="hover:text-yellow-400 transition-colors">CƠ SỞ</button>
-            <button onClick={() => scrollToSection("uu-dai")} className="hover:text-yellow-400 transition-colors">ƯU ĐÃI</button>
-            <button onClick={() => scrollToSection("lien-he")} className="hover:text-yellow-400 transition-colors">LIÊN HỆ</button>
+            <button
+              onClick={() => scrollToSection("thuc-don")}
+              className="hover:text-yellow-400 transition-colors"
+            >
+              THỰC ĐƠN
+            </button>
+            <button
+              onClick={() => scrollToSection("co-so")}
+              className="hover:text-yellow-400 transition-colors"
+            >
+              CƠ SỞ
+            </button>
+            <button
+              onClick={() => scrollToSection("uu-dai")}
+              className="hover:text-yellow-400 transition-colors"
+            >
+              ƯU ĐÃI
+            </button>
+            <button
+              onClick={() => scrollToSection("lien-he")}
+              className="hover:text-yellow-400 transition-colors"
+            >
+              LIÊN HỆ
+            </button>
           </div>
 
           {/* Hotline + Đặt bàn desktop */}
@@ -79,23 +94,39 @@ export default function Header({ onBookingClick }: HeaderProps) {
             className="lg:hidden text-white focus:outline-none"
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+            {isMobileMenuOpen ? (
+              <X className="w-8 h-8" />
+            ) : (
+              <Menu className="w-8 h-8" />
+            )}
           </button>
         </nav>
 
         {/* Mobile menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden bg-green-700 pb-4 space-y-3 text-center font-semibold">
-            <button onClick={() => scrollToSection("thuc-don")} className="block w-full py-2 hover:text-yellow-400 transition-colors">
+            <button
+              onClick={() => scrollToSection("thuc-don")}
+              className="block w-full py-2 hover:text-yellow-400 transition-colors"
+            >
               THỰC ĐƠN
             </button>
-            <button onClick={() => scrollToSection("co-so")} className="block w-full py-2 hover:text-yellow-400 transition-colors">
+            <button
+              onClick={() => scrollToSection("co-so")}
+              className="block w-full py-2 hover:text-yellow-400 transition-colors"
+            >
               CƠ SỞ
             </button>
-            <button onClick={() => scrollToSection("uu-dai")} className="block w-full py-2 hover:text-yellow-400 transition-colors">
+            <button
+              onClick={() => scrollToSection("uu-dai")}
+              className="block w-full py-2 hover:text-yellow-400 transition-colors"
+            >
               ƯU ĐÃI
             </button>
-            <button onClick={() => scrollToSection("lien-he")} className="block w-full py-2 hover:text-yellow-400 transition-colors">
+            <button
+              onClick={() => scrollToSection("lien-he")}
+              className="block w-full py-2 hover:text-yellow-400 transition-colors"
+            >
               LIÊN HỆ
             </button>
             <div className="border-t border-green-600 pt-3">
