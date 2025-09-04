@@ -5,6 +5,7 @@ import NewDishesSection from "@/components/new-dishes-section";
 import LocationsSection from "@/components/locations-section";
 import Footer from "@/components/footer";
 import BookingModal from "@/components/booking-modal";
+import PromoPopup from "@/components/PromoPopup";
 
 export default function Home() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
@@ -31,6 +32,7 @@ export default function Home() {
 
   return (
     <div className="bg-white">
+       <PromoPopup /> 
       <Header 
         isScrolled={isScrolled} 
         onBookingClick={openBookingModal}
