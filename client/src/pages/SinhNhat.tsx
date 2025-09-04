@@ -1,5 +1,24 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
+function Breadcrumb() {
+  return (
+    <nav className="text-gray-500 text-sm font-semibold mb-4 px-4">
+      <ul className="flex items-center space-x-2">
+        <li>
+          <a href="/" className="hover:underline">Trang Chủ</a>
+        </li>
+        <li className="select-none">›</li> {/* dấu mũi tên */}
+        <li>
+          <a href="/menu" className="hover:underline">Menu</a>
+        </li>
+        <li className="select-none">›</li> {/* dấu mũi tên */}
+        <li>
+          <a href="/sinh-nhat" className="hover:underline">Tin Tức</a>
+        </li>
+      </ul>
+    </nav>
+  );
+}
 
 function SinhNhatPage() {
   return (
@@ -8,6 +27,9 @@ function SinhNhatPage() {
 
       <section className="text-green-900 pt-24 pb-12 px-4 font-sans">
         <div className="max-w-3xl mx-auto">
+          {/* Gọi Breadcrumb ở đây */}
+          <Breadcrumb />
+
           {/* Ngày đăng */}
           <p className="text-sm text-gray-500 mb-2">04/09/2025</p>
 
