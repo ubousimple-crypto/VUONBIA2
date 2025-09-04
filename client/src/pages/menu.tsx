@@ -4,6 +4,28 @@ import { newDishes } from "../lib/data";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import useEmblaCarousel from "embla-carousel-react";
+function Breadcrumb() {
+  return (
+    <nav className="text-gray-500 text-sm font-semibold mb-2 px-4 pt-4">
+      <ul className="flex items-center space-x-2">
+        <li>
+          <a href="/" className="hover:underline">Trang Chủ</a>
+        </li>
+        <li className="select-none">›</li> {/* dấu mũi tên */}
+        <li>
+          <a href="/sinh-nhat" className="hover:underline">Tin Tức</a>
+        </li>
+        <li className="select-none">›</li> {/* dấu mũi tên */}
+        <li>
+          <a href="/menu" className="hover:underline">Menu</a>
+        </li>
+      </ul>
+    </nav>
+  );
+}
+
+
+
 
 const categories = [
   "Combo",
@@ -131,70 +153,88 @@ export default function Menu() {
     );
   };
 
-  return (
-    <>
-      <Header onBookingClick={() => {}} />
+      return (
+        <div
+          className="relative bg-cover bg-center min-h-screen"
+          style={{ backgroundImage: "url('/anh-go7.jpg')" }}
+        >
+          <Header isScrolled={false} onBookingClick={() => {}} />
 
-      {/* Phần cố định "Thực đơn" + tìm kiếm + danh mục */}
-      <div
-        className="fixed top-[72px] left-0 right-0 z-50 bg-white shadow-md"
-        style={{ maxWidth: "100%", width: "100%" }}
-      >
-        <div className="px-4 pt-4 pb-2">
-          <h1 className="text-2xl font-extrabold text-yellow-600 drop-shadow-md">
-            Thực đơn
-          </h1>
-        </div>
+          {/* Phần cố định "Thực đơn" + tìm kiếm + danh mục */}
+          <div
+            className="fixed top-[72px] left-0 right-0 z-50 backdrop-blur-sm bg-transparent"
+            style={{
+              backgroundImage: "url('/anh-go7.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              minHeight: "140px",
+            }} // Chiều cao đủ chứa nội dung
+          >
+            {/* Gọi Breadcrumb ở đây */}
+            <Breadcrumb />
+            <div className="px-4 pt-2 pb-2">
+              <h1 className="text-2xl font-extrabold text-yellow-800 ">
+                MENU
+              </h1>
+            </div>
 
-        <div className="p-4 border-b border-gray-200">
-          <div className="relative w-full max-w-md mx-auto">
-            <input
-              type="search"
-              placeholder="Tìm kiếm món ăn..."
-              className="w-full bg-green-900 text-gray-300 placeholder-gray-400 rounded-full py-2 pl-12 pr-4 border border-green-800 focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-green-700 transition"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <svg
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-green-400 pointer-events-none"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              viewBox="0 0 24 24"
-            >
-              <circle cx="11" cy="11" r="7" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
+            <div className="p-4 border-b border-gray-200">
+              <div className="relative w-full max-w-md mx-auto">
+                <input
+                  type="search"
+                  placeholder="Tìm kiếm món ăn..."
+                  className="w-full bg-green-900 text-gray-300 placeholder-gray-400 rounded-full py-2 pl-12 pr-4 border border-green-800 focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-green-700 transition"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <svg
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 text-green-400 pointer-events-none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  viewBox="0 0 24 24"
+                >
+                  <circle cx="11" cy="11" r="7" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </div>
+            </div>
+
+            <div className="border-b border-gray-200 py-2">
+              <CategoryBar
+                activeCategory={activeCategory}
+                setActiveCategory={setActiveCategory}
+              />
+            </div>
           </div>
+
+          {/* main với margin top đủ tránh bị che */}
+          <main
+            className="container mx-auto px-4 py-0"
+            style={{ marginTop: "220px", paddingBottom: "50px" }} // Tăng marginTop để tránh fixed
+          >
+            {activeCategory === "Tất cả"
+              ? categories.map((cat) => renderSection(cat))
+              : renderSection(activeCategory)}
+
+            {filteredDishes.length === 0 && (
+              <div className="text-center text-gray-500 mt-6">
+                Không tìm thấy món ăn nào.
+              </div>
+            )}
+          </main>
+
+          <Footer />
         </div>
+      );
 
-        <div className="border-b border-gray-200 py-2">
-          <CategoryBar
-            activeCategory={activeCategory}
-            setActiveCategory={setActiveCategory}
-          />
-        </div>
-      </div>
+    
 
-      {/* Chỉnh margin top main để tránh bị che */}
-        <main className="container mx-auto px-4 py-0" style={{ marginTop: "220px" }}>
-        {activeCategory === "Tất cả"
-          ? categories.map((cat) => renderSection(cat))
-          : renderSection(activeCategory)}
-
-        {filteredDishes.length === 0 && (
-          <div className="text-center text-gray-500 mt-6">
-            Không tìm thấy món ăn nào.
-          </div>
-        )}
-      </main>
-
-      <Footer />
-    </>
-  );
+  
 }
+  
