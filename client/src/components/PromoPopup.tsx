@@ -5,32 +5,25 @@ function PromoPopup() {
 
   const handleClose = () => setIsVisible(false);
 
-  // Ngăn scroll khi mở popup
+  // (Optional) Cleanup overflow in case
   useEffect(() => {
-    if (isVisible) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-
-    // Cleanup khi component unmount
     return () => {
       document.body.style.overflow = '';
     };
-  }, [isVisible]);
+  }, []);
 
   if (!isVisible) return null;
 
   return (
     <>
       {/* Overlay */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 pointer-events-none">
         {/* Popup content */}
-        <div className="relative w-[400px] max-w-[90vw] max-h-[80vh] overflow-auto rounded-lg shadow-lg  p-4">
+        <div className="relative pointer-events-auto w-[400px] max-w-[90vw] max-h-[80vh] overflow-auto rounded-lg shadow-lg p-4">
           {/* Close button */}
           <button
             onClick={handleClose}
-            className="absolute top-0 right-0 w-8 h-8 flex items-center justify-center bg-black border-2 border-white  bg-opacity-70 rounded-full hover:bg-opacity-90"
+            className="absolute top-0 right-0 w-8 h-8 flex items-center justify-center bg-black border-2 border-white bg-opacity-70 rounded-full hover:bg-opacity-90"
             aria-label="Close popup"
           >
             <svg
