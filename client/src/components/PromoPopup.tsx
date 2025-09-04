@@ -1,32 +1,28 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function PromoPopup() {
-  const [show, setShow] = useState(true); // Mặc định hiện popup
+  const [isVisible, setIsVisible] = useState(false);
 
-  // Auto đóng popup sau 10 giây (tùy chọn)
-  // useEffect(() => {
-  //   const timer = setTimeout(() => setShow(false), 10000);
-  //   return () => clearTimeout(timer);
-  // }, []);
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
-  if (!show) return null;
+  if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center px-4">
-      <div className="relative max-w-3xl w-full">
-        {/* Nút đóng */}
+    <div className="fixed inset-0 z-50 bg-black bg-opacity-60 flex items-center justify-center px-4">
+      <div className="relative w-full max-w-[90vw] md:max-w-[600px]">
         <button
-          className="absolute top-2 right-2 bg-white rounded-full p-1 shadow-md hover:bg-gray-200 z-50"
-          onClick={() => setShow(false)}
+          className="absolute top-2 right-2 text-white text-3xl z-10"
+          onClick={() => setIsVisible(false)}
         >
-          <span className="text-xl font-bold">&times;</span>
+          &times;
         </button>
-
-        {/* Ảnh nội dung */}
         <img
-          src="BIA.jpg" // Đường dẫn ảnh bạn muốn dùng
-          alt="Popup quảng cáo"
-          className="w-full rounded-lg shadow-lg"
+          src="/images/promo-popup.png"
+          alt="Popup Ưu Đãi"
+          className="w-full h-auto rounded-lg shadow-lg"
         />
       </div>
     </div>
