@@ -3,14 +3,20 @@ import useEmblaCarousel from "embla-carousel-react";
 
 const categories = [
   "Tất cả",
-  "Combo",
-  "Món mới",
-  "Món heo",
-  "Món bò",
-  "Món gà",
-  "Món chay",
-  "Nước giải khát",
-  "Bia"
+     "Khai Vị",
+      "Món bò",
+      "Lẩu",
+      "Mì - Miến",
+      "Cơm",
+      "Món gà",
+      "Món heo",
+       "Gỏi vườn bia",
+      "Thủy sản",
+    "Hải Sản và Ốc",
+        "Món chay",
+    "Combo",
+  "Best Vườn Bia",
+     "Bia – NƯỚC Giải Khát",
 ];
 
 interface CategoryBarProps {
