@@ -89,7 +89,7 @@ export function VuonBia() {
             onClick={() => setLocation("/sinh-nhat")}
             className="bg-yellow-400 text-black border-2 border-black px-6 py-3 rounded hover:bg-yellow-300 transition font-semibold mb-4 max-w-[200px]"
           >
-            XEM THÊM
+            XEM CHI TIẾT
           </button>
 
           {/* Nút gọi điện */}
@@ -111,7 +111,7 @@ export function VuonBia() {
 export function MonNgonMoiRaLo() {
   const [, setLocation] = useLocation(); // ✅ Gọi đúng nơi
 
-  const monMoi = (newDishes || []).filter((dish) => dish.category === "Món mới");
+  const monMoi = (newDishes || []).filter((dish) => dish.category === "Best Vườn Bia");
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
