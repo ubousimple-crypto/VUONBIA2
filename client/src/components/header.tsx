@@ -1,5 +1,7 @@
+import React, { useState } from "react";
+import { useLocation } from "wouter";
 import { Utensils, Menu, X, Phone } from "lucide-react";
-import { useState } from "react";
+
 interface HeaderProps {
   isScrolled: boolean;
   onBookingClick: () => void;
@@ -7,12 +9,20 @@ interface HeaderProps {
 
 export default function Header({ onBookingClick, isScrolled }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [, setLocation] = useLocation(); // lấy setLocation để chuyển route
 
+  // Hàm cuộn tới section theo id (dùng cho scroll nội bộ)
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     }
+    setIsMobileMenuOpen(false);
+  };
+
+  // Hàm chuyển trang route (dùng cho các link dẫn sang trang khác)
+  const navigateTo = (path: string) => {
+    setLocation(path);
     setIsMobileMenuOpen(false);
   };
 
@@ -27,9 +37,7 @@ export default function Header({ onBookingClick, isScrolled }: HeaderProps) {
           {/* Logo */}
           <div
             className="flex items-center space-x-2 cursor-pointer"
-            onClick={() =>
-              window.scrollTo({ top: 0, behavior: "smooth" })
-            }
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             <div className="w-12 h-12 rounded-full overflow-hidden">
               <img
@@ -38,9 +46,7 @@ export default function Header({ onBookingClick, isScrolled }: HeaderProps) {
                 className="w-full h-full object-cover scale-150 transform"
               />
             </div>
-            <h1 className="text-white font-bold text-lg tracking-wide">
-              VƯỜN BIA
-            </h1>
+            <h1 className="text-white font-bold text-lg tracking-wide">VƯỜN BIA</h1>
           </div>
 
           {/* Desktop Menu */}
@@ -94,55 +100,65 @@ export default function Header({ onBookingClick, isScrolled }: HeaderProps) {
             className="lg:hidden text-white focus:outline-none"
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? (
-              <X className="w-8 h-8" />
-            ) : (
-              <Menu className="w-8 h-8" />
-            )}
+            {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
           </button>
         </nav>
 
         {/* Mobile menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-green-700 pb-4 space-y-3 text-center font-semibold">
-            <button
-              onClick={() => scrollToSection("thuc-don")}
+      <div className={`lg:hidden bg-green-700 pb-4 space-y-3 text-center font-semibold transition-max-height duration-300 ease-in-out
+      ${isMobileMenuOpen ? "max-h-screen" : "max-h-0 overflow-hidden"}`}>
+            {/* Nếu muốn scroll tới section */}
+            {/* <button
+              onClick={() => scrollToSection("menu")}
               className="block w-full py-2 hover:text-yellow-400 transition-colors"
             >
-              THỰC ĐƠN
-            </button>
+              MENU
+            </button> */}
+
+            {/* Hoặc chuyển sang trang /menu */}
+
+        <button
+          onClick={() => navigateTo("/")}
+          className="block w-full py-2 hover:text-yellow-400 transition-colors"
+        >
+          TRANG CHỦ
+        </button>
             <button
-              onClick={() => scrollToSection("co-so")}
+              onClick={() => navigateTo("/menu")}
               className="block w-full py-2 hover:text-yellow-400 transition-colors"
             >
-              CƠ SỞ
+              MENU
             </button>
+
             <button
-              onClick={() => scrollToSection("uu-dai")}
+               onClick={() => navigateTo("/sinh-nhat")}
               className="block w-full py-2 hover:text-yellow-400 transition-colors"
             >
-              ƯU ĐÃI
+              TIỆC SINH NHẬT - TẤT NIÊN
             </button>
-            <button
-              onClick={() => scrollToSection("lien-he")}
-              className="block w-full py-2 hover:text-yellow-400 transition-colors"
-            >
-              LIÊN HỆ
-            </button>
+        <button
+           onClick={() => navigateTo("/vuon-bia-ly-thai-to")}
+          className="block w-full py-2 hover:text-yellow-400 transition-colors"
+        >
+       VƯỜN BIA - LÝ THÁI TỔ
+        </button>
+
+        <button
+           onClick={() => navigateTo("/vuon-bia-bui-van-danh")}
+          className="block w-full py-2 hover:text-yellow-400 transition-colors"
+        >
+          VƯỜN BIA - BÙI VĂN DANH
+        </button>
+            
+
             <div className="border-t border-green-600 pt-3">
               <div className="flex justify-center items-center text-yellow-400 font-bold space-x-1 mb-2">
                 <Phone className="w-5 h-5" />
-                <span>HOTLINE: *1986</span>
+                <a href="tel:0783885288" className="hover:underline">
+                  HOTLINE: 0783885288
+                </a>
               </div>
-              <button
-                onClick={() => {
-                  onBookingClick();
-                  setIsMobileMenuOpen(false);
-                }}
-                className="bg-yellow-400 text-green-700 px-6 py-2 rounded font-bold hover:bg-yellow-300 transition-colors w-full"
-              >
-                ĐẶT BÀN
-              </button>
             </div>
           </div>
         )}
