@@ -1,5 +1,6 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
+
 function Breadcrumb() {
   return (
     <nav className="text-gray-500 text-sm font-semibold mb-4 px-4">
@@ -7,13 +8,21 @@ function Breadcrumb() {
         <li>
           <a href="/" className="hover:underline">Trang Chủ</a>
         </li>
-        <li className="select-none">›</li> {/* dấu mũi tên */}
+        <li className="select-none">›</li>
         <li>
           <a href="/menu" className="hover:underline">Menu</a>
         </li>
         <li className="select-none">›</li> {/* dấu mũi tên */}
         <li>
-          <a href="/sinh-nhat" className="hover:underline">Tin Tức</a>
+          <a href="/vuon-bia-ly-thai-to" className="hover:underline">Vườn Bia - LTT</a>
+        </li>
+        <li className="select-none">›</li> {/* dấu mũi tên */}
+        <li>
+          <a href="/vuon-bia-bui-van-danh" className="hover:underline">Vườn Bia - BVD</a>
+        </li>
+        <li className="select-none">›</li>
+        <li>
+          <a href="/sinh-nhat" className="hover:underline">Sinh Nhật</a>
         </li>
       </ul>
     </nav>
@@ -27,162 +36,136 @@ function SinhNhatPage() {
 
       <section className="text-green-900 pt-24 pb-12 px-4 font-sans">
         <div className="max-w-3xl mx-auto">
-          {/* Gọi Breadcrumb ở đây */}
           <Breadcrumb />
 
-          {/* Ngày đăng */}
           <p className="text-sm text-gray-500 mb-2">04/09/2025</p>
 
-          {/* Tiêu đề lớn */}
           <h1 className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight">
-            VƯỜN BIA – TỔ CHỨC TIỆC SINH NHẬT CHẤT NHƯ NƯỚC CẤT
+            SINH NHẬT CHẤT, TIỆC TẤT NIÊN SIÊU VUI & YEAR ONE PARTY RỰC RỠ TẠI VƯỜN BIA – DECOR MIỄN PHÍ CHỈ CÓ TẠI ĐÂY!
           </h1>
 
-          {/* Tag */}
           <span className="inline-block bg-green-700 text-white text-xs font-bold px-3 py-1 rounded mb-6 uppercase tracking-wider">
-            TIỆC SINH NHẬT - TẤT NIÊN
+            SINH NHẬT - TẤT NIÊN - YEAR ONE PARTY
           </span>
 
-          {/* Mở đầu */}
           <p className="mb-4 text-lg leading-relaxed">
-            Bạn đang tìm kiếm một địa điểm vừa chill, vừa vui, vừa có không gian lý tưởng để tổ chức sinh nhật tại Long Xuyên? <strong className="text-yellow-600">Vườn Bia</strong> chính là lựa chọn số 1 với
-            <strong> 2 chi nhánh nổi bật:</strong> <br />
-            📍 <strong>Lý Thái Tổ</strong> – sôi động, dễ tìm giữa trung tâm <br />
-            📍 <strong>Bờ Kè Bùi Văn Danh</strong> – chill bên sông, không gian mở cực chất
+            Bạn muốn tổ chức một bữa tiệc sinh nhật để đời? Hay một buổi tiệc tất niên sôi động? Hay thậm chí là Year One Party đầy ý nghĩa? <strong>Vườn Bia</strong> chính là điểm đến không thể bỏ qua! Đặc biệt, khi tổ chức sinh nhật tại đây, bạn sẽ được <strong>MIỄN PHÍ decor cực xinh xắn</strong> với bóng bay, banner và backdrop cực chất – giúp bạn thoải mái “sống ảo” và ghi dấu khoảnh khắc đáng nhớ mà không tốn thêm đồng nào cho trang trí.
           </p>
-
-          {/* Ảnh 1 */}
           <div className="mb-6">
             <img
-              src="BVD-TOI.jpg"
-              alt="Không gian ngoài trời tại chi nhánh Bờ Kè"
-              className="w-full object-cover max-h-[400px]"
+              src="SINHNHAT/SN-8.jpg"
+              alt="Không gian ngoài trời chill tại Bùi Văn Danh"
+              className="w-full object-cover max-h-[400px] rounded"
             />
             <p className="text-sm italic text-center text-gray-600 mt-2">
-              Không gian ngoài trời chill tại Vườn Bia – Bờ Kè Bùi Văn Danh về đêm
+              Tiệc sinh nhật tại Vườn Bia - Bờ Kè Bùi Văn Danh
             </p>
           </div>
 
-          {/* Không gian ngoài trời */}
-          <h2 className="text-xl font-bold mb-2 mt-6">🏞️ Không gian ngoài trời – Chill hết cỡ</h2>
+          <h2 className="text-xl font-bold mb-2 mt-6">🎉 Decor sinh nhật miễn phí – Chỉ có tại Vườn Bia!</h2>
           <p className="mb-4 leading-relaxed">
-            Khu vực ngoài trời rộng rãi, thoáng mát với view sông tuyệt đẹp, rất phù hợp cho các buổi tiệc sinh nhật hay tụ họp bạn bè đông người.
+            Hãy tưởng tượng một không gian được trang trí ngập tràn bóng bay đủ màu sắc, backdrop siêu “xịn xò” và banner chúc mừng rực rỡ – tất cả đều miễn phí khi bạn đặt tiệc sinh nhật tại Vườn Bia. Chúng tôi lo phần trang trí, bạn chỉ cần đến và tận hưởng niềm vui cùng bạn bè và gia đình!
           </p>
-          <ul className="list-disc ml-6 mb-4 leading-relaxed">
-            <li>Không khí trong lành, mát mẻ bên sông</li>
-            <li>Bàn ghế rộng rãi, thoải mái cho nhóm lớn</li>
-            <li>Background check-in cực chất từ chiều đến tối</li>
-          </ul>
-
-          {/* Ảnh 2 */}
           <div className="mb-6">
             <img
-              src="SN-BVD.jpg"
-              alt="Không gian tổ chức sinh nhật tại chi nhánh Bờ Kè"
-              className="w-full object-cover max-h-[400px]"
+              src="SINHNHAT/SN-3.jpg"
+              alt="Không gian ngoài trời chill tại Bùi Văn Danh"
+              className="w-full object-cover max-h-[400px] rounded"
             />
             <p className="text-sm italic text-center text-gray-600 mt-2">
-              Tiệc sinh nhật chill tại Vườn Bia – Bờ Kè Bùi Văn Danh
+              Tiệc sinh nhật tại Vườn Bia - Lý Thái Tổ 
+            </p>
+          </div>
+          <div className="mb-6">
+            <img
+              src="SINHNHAT/SN-1.jpg"
+              alt="Không gian ngoài trời chill tại Bùi Văn Danh"
+              className="w-full object-cover max-h-[400px] rounded"
+            />
+            <p className="text-sm italic text-center text-gray-600 mt-2">
+              Tiệc sinh nhật tại Vườn Bia - Bờ Kè Bùi Văn Danh
+            </p>
+          </div>
+          <div className="mb-6">
+            <img
+              src="SINHNHAT/SN-2.jpg"
+              alt="Không gian ngoài trời chill tại Bùi Văn Danh"
+              className="w-full object-cover max-h-[400px] rounded"
+            />
+            <p className="text-sm italic text-center text-gray-600 mt-2">
+              Tiệc sinh nhật tại Vườn Bia
+            </p>
+          </div>
+          <h2 className="text-xl font-bold mb-2 mt-6">✨ Tiệc tất niên & Year One Party – Không gian siêu “cháy”</h2>
+          <p className="mb-4 leading-relaxed">
+            Ngoài sinh nhật, Vườn Bia còn là lựa chọn tuyệt vời để bạn tổ chức tiệc tất niên và Year One Party đậm chất “quẩy”. Không gian rộng rãi, âm nhạc sôi động, bia tươi mát lạnh và phục vụ tận tình sẽ biến bữa tiệc của bạn thành sự kiện đáng nhớ nhất năm!
+          </p>
+          <div className="mb-6">
+            <img
+              src="SINHNHAT/TATNIEN.jpg"
+              alt="Không gian ngoài trời chill tại Bùi Văn Danh"
+              className="w-full object-cover max-h-[400px] rounded"
+            />
+            <p className="text-sm italic text-center text-gray-600 mt-2">
+              Tiệc tất niên Vườn Bia -Lý Thái Tổ
+            </p>
+          </div>
+          <div className="mb-6">
+            <img
+              src="SINHNHAT/SN-6.jpg"
+              alt="Không gian ngoài trời chill tại Bùi Văn Danh"
+              className="w-full object-cover max-h-[400px] rounded"
+            />
+            <p className="text-sm italic text-center text-gray-600 mt-2">
+              Tiệc Year One Party Vườn Bia -Lý Thái Tổ
             </p>
           </div>
 
-          {/* Không gian đèn vàng */}
-          <h2 className="text-xl font-bold mb-2 mt-6">🪩 Góc sân vườn decor đèn vàng – Ấm cúng & riêng tư</h2>
+          <h2 className="text-xl font-bold mb-2 mt-6">❄️ Phòng lạnh riêng tư – Có karaoke, không gian lý tưởng cho buổi tiệc</h2>
           <p className="mb-4 leading-relaxed">
-            Khu vực sân vườn với ánh đèn vàng ấm áp, decor bằng tường gỗ, đèn LED và slogan neon là không gian lý tưởng cho các bữa tiệc thân mật, hẹn hò hoặc tụ tập bạn bè nhỏ gọn.
+            Muốn một không gian yên tĩnh, mát mẻ và có thể hát hò thả ga? Phòng lạnh riêng biệt tại Vườn Bia được trang bị hệ thống karaoke hiện đại, sẵn sàng phục vụ cho những bữa tiệc sinh nhật hoặc tụ họp thân mật của bạn. Máy lạnh luôn hoạt động, không gian sang trọng và trang trí linh hoạt theo ý muốn – đảm bảo bữa tiệc riêng tư của bạn sẽ hoàn hảo đến từng chi tiết.
           </p>
-          <p className="mb-4 leading-relaxed">
-            Không gian này mang lại sự riêng tư và ánh sáng lung linh, tạo nên khung hình đẹp mê ly cho mọi khoảnh khắc của bạn.
-          </p>
-
-          {/* Ảnh 3 */}
-          <div className="mb-6">
-            <img
-              src="VB-LTT.jpg"
-              alt="Không gian đèn vàng tại Vườn Bia"
-              className="w-full object-cover max-h-[400px]"
-            />
-            <p className="text-sm italic text-center text-gray-600 mt-2">
-              Không gian đèn vàng ấm áp tại Vườn Bia – Lý Thái Tổ
-            </p>
-          </div>
-
-          {/* Decor miễn phí */}
-          <h2 className="text-xl font-bold mb-2 mt-6">🎈 Decor sinh nhật miễn phí – Có 1-0-2</h2>
-          <p className="mb-4 leading-relaxed">
-            Đặt bàn tại Vườn Bia, bạn sẽ được miễn phí gói trang trí sinh nhật gồm bóng bay, banner, backdrop,... Đội ngũ sẽ chuẩn bị chu đáo để bạn chỉ cần đến vui chơi.
-          </p>
-
-          {/* Ảnh decor */}
-          <div className="mb-6">
-            <img
-              src="SN-LTT.jpg"
-              alt="Không gian tổ chức sinh nhật tại Vườn Bia"
-              className="w-full object-cover max-h-[400px]"
-            />
-            <p className="text-sm italic text-center text-gray-600 mt-2">
-              Không gian sinh nhật đẹp lung linh tại Vườn Bia – Lý Thái Tổ
-            </p>
-          </div>
-
-          {/* Phòng lạnh */}
-          <h2 className="text-xl font-bold mb-2 mt-6">❄️ Phòng lạnh riêng tư – Mát mẻ, sang trọng</h2>
-          <p className="mb-4 leading-relaxed">
-            Vườn Bia còn có phòng lạnh riêng biệt, dành cho nhóm khách thích không gian yên tĩnh và mát mẻ, phù hợp tổ chức sinh nhật, tiệc công ty hoặc họp mặt gia đình.
-          </p>
-          <ul className="list-disc ml-6 mb-4 leading-relaxed">
-            <li>Không gian kín, máy lạnh hoạt động liên tục</li>
-            <li>Bàn ghế gọn gàng, sạch sẽ</li>
-            <li>Trang trí linh hoạt theo yêu cầu khách</li>
-          </ul>
 
           <div className="mb-6">
             <img
-              src="VB-PL.jpg"
+              src="SINHNHAT/SN-5.jpg"
               alt="Phòng lạnh tại Vườn Bia"
               className="w-full object-cover max-h-[400px]"
             />
             <p className="text-sm italic text-center text-gray-600 mt-2">
-              Phòng lạnh riêng tư tại Vườn Bia cho tiệc sinh nhật
+              Phòng lạnh riêng tư có karaoke 
             </p>
           </div>
 
-          {/* Không gian chung */}
-          <h2 className="text-xl font-bold mb-2 mt-6">🍻 Không gian chill – Mồi bén, bia mát lạnh</h2>
+          <h2 className="text-xl font-bold mb-2 mt-6">🍽️ Món ăn đa dạng</h2>
           <p className="mb-4 leading-relaxed">
-            Cả hai chi nhánh đều được thiết kế thoáng đãng, bàn ghế thoải mái, ánh sáng đẹp và phục vụ các món nhậu hấp dẫn, bia mát lạnh sẵn sàng làm nóng không khí bữa tiệc.
+            Tại Vườn Bia, thực đơn phong phú với các món nhậu đặc sắc, từ hải sản tươi ngon, thịt nướng thơm lừng đến các món ăn nhẹ hợp vị. Mỗi món ăn đều được chế biến cầu kỳ, đảm bảo làm hài lòng cả những thực khách khó tính nhất.
           </p>
           <div className="mb-6">
             <img
               src="MONAN.jpg"
-              alt="Món ăn ngon tại Vườn Bia"
+              alt="Phòng lạnh tại Vườn Bia"
               className="w-full object-cover max-h-[400px]"
             />
             <p className="text-sm italic text-center text-gray-600 mt-2">
-              Món ăn đa dạng, bia tươi mát lạnh tại Vườn Bia
+              
             </p>
           </div>
-
-          {/* Đặt bàn */}
-          <h2 className="text-xl font-bold mb-2 mt-6">📞 Đặt bàn dễ dàng – Phục vụ tận tâm</h2>
+          <h2 className="text-xl font-bold mb-2 mt-6">📞 Đừng chần chừ – Gọi ngay để nhận ưu đãi và đặt bàn!</h2>
           <p className="mb-6 leading-relaxed">
-            Chỉ cần gọi đến{" "}
-            <a
-              href="tel:0783885288"
-              className="text-red-600 font-semibold underline"
-            >
+            Nhanh tay gọi đến{" "}
+            <a href="tel:0783885288" className="text-red-600 font-semibold underline">
               078 388 5288
             </a>{" "}
-            bạn sẽ được hỗ trợ đặt bàn và chuẩn bị chu đáo cho bữa tiệc sinh nhật tại Vườn Bia.
+            để được tư vấn chi tiết về gói decor sinh nhật miễn phí, cũng như các dịch vụ hỗ trợ tổ chức tiệc tất niên, Year One Party và phòng lạnh karaoke chuyên nghiệp tại Vườn Bia.
           </p>
 
-          {/* CTA */}
           <div className="text-center mt-8">
             <a
               href="tel:0783885288"
               className="bg-yellow-400 hover:bg-yellow-300 transition px-6 py-3 rounded-full font-bold text-black shadow inline-block"
             >
-              📞 Gọi ngay để đặt tiệc sinh nhật tại Vườn Bia!
+              📞 Gọi ngay – Đặt tiệc tại Vườn Bia!
             </a>
           </div>
         </div>
