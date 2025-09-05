@@ -13,7 +13,7 @@ function Breadcrumb() {
         </li>
         <li className="select-none">›</li> {/* dấu mũi tên */}
         <li>
-          <a href="/sinh-nhat" className="hover:underline">Tin Tức</a>
+          <a href="/sinh-nhat" className="hover:underline">Tiệc Sinh Nhật</a>
         </li>
         <li className="select-none">›</li> {/* dấu mũi tên */}
         <li>
@@ -28,14 +28,21 @@ function Breadcrumb() {
 
 
 const categories = [
+   "Tất cả",
+   "Khai Vị",
+    "Món bò",
+    "Lẩu",
+    "Mì - Miến",
+    "Cơm",
+    "Món gà",
+    "Món heo",
+     "Gỏi vườn bia",
+    "Thủy sản",
+  "Hải Sản và Ốc",
+      "Món chay",
   "Combo",
-  "Món mới",
-  "Món heo",
-  "Món bò",
-  "Món gà",
-  "Món chay",
-  "Nước giải khát",
-  "Bia",
+  "Best Vườn Bia",
+   "Bia – NƯỚC Giải Khát",
 ];
 
 export default function Menu() {
@@ -94,8 +101,19 @@ export default function Menu() {
                       alt={dish.name}
                       className="w-full h-32 object-cover rounded mb-2"
                     />
-                    <div className="font-semibold">{dish.name}</div>
-                    <div className="text-green-900 font-bold">
+                    <div className="text-green-900 font-semibold">{dish.name}</div>
+                    
+                    <div className="space-y-1">
+                      {dish.note && (
+                        <div className="text-gray-500 whitespace-pre-line italic">
+                          {dish.note}
+                        </div>
+                      )}
+                      <div className="text-xs italic text-red-900">
+                        *Hình ảnh chỉ mang tính chất minh họa
+                      </div>
+                    </div>
+                    <div className="text-red-700 font-bold">
                       {dish.price.toLocaleString()} đ
                     </div>
                   </div>
@@ -141,8 +159,11 @@ export default function Menu() {
                 className="w-16 h-16 object-cover rounded mr-4"
               />
               <div className="flex-1">
-                <div className="font-semibold">{dish.name}</div>
-                <div className="text-green-900 font-bold">
+                <div className="text-green-900 font-semibold">{dish.name}</div>
+                <div className="text-xs italic text-yellow-900">
+                  *Hình ảnh chỉ mang tính chất minh họa
+                </div>
+                <div className="text-red-700 font-bold">
                   {dish.price.toLocaleString()} đ
                 </div>
               </div>
@@ -162,12 +183,13 @@ export default function Menu() {
 
           {/* Phần cố định "Thực đơn" + tìm kiếm + danh mục */}
           <div
-            className="fixed top-[72px] left-0 right-0 z-50 backdrop-blur-sm bg-transparent"
+            className="fixed top-[72px] left-0 right-0 z-[10] backdrop-blur-sm bg-transparent"
             style={{
               backgroundImage: "url('/anh-go7.jpg')",
               backgroundSize: "cover",
               backgroundPosition: "center",
-              minHeight: "140px",
+              minHeight: "160px",
+              
             }} // Chiều cao đủ chứa nội dung
           >
             {/* Gọi Breadcrumb ở đây */}
@@ -211,12 +233,13 @@ export default function Menu() {
                 setActiveCategory={setActiveCategory}
               />
             </div>
+            
           </div>
 
           {/* main với margin top đủ tránh bị che */}
           <main
             className="container mx-auto px-4 py-0"
-            style={{ marginTop: "220px", paddingBottom: "50px" }} // Tăng marginTop để tránh fixed
+            style={{ marginTop: "260px", paddingBottom: "50px" }} // Tăng marginTop để tránh fixed
           >
             {activeCategory === "Tất cả"
               ? categories.map((cat) => renderSection(cat))
