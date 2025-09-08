@@ -37,7 +37,7 @@ export default function Header({ onBookingClick, isScrolled }: HeaderProps) {
           {/* Logo */}
           <div
             className="flex items-center space-x-2 cursor-pointer"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => navigateTo("/")} // 👉 chuyển về trang chủ
           >
             <div className="w-12 h-12 rounded-full overflow-hidden">
               <img
@@ -46,7 +46,9 @@ export default function Header({ onBookingClick, isScrolled }: HeaderProps) {
                 className="w-full h-full object-cover scale-150 transform"
               />
             </div>
-            <h1 className="text-white font-bold text-lg tracking-wide">VƯỜN BIA</h1>
+            <h1 className="text-white font-bold text-lg tracking-wide">
+              VƯỜN BIA
+            </h1>
           </div>
 
           {/* Desktop Menu */}
@@ -100,30 +102,26 @@ export default function Header({ onBookingClick, isScrolled }: HeaderProps) {
             className="lg:hidden text-white focus:outline-none"
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+            {isMobileMenuOpen ? (
+              <X className="w-8 h-8" />
+            ) : (
+              <Menu className="w-8 h-8" />
+            )}
           </button>
         </nav>
 
         {/* Mobile menu */}
         {isMobileMenuOpen && (
-      <div className={`lg:hidden bg-green-700 pb-4 space-y-3 text-center font-semibold transition-max-height duration-300 ease-in-out
-      ${isMobileMenuOpen ? "max-h-screen" : "max-h-0 overflow-hidden"}`}>
-            {/* Nếu muốn scroll tới section */}
-            {/* <button
-              onClick={() => scrollToSection("menu")}
+          <div
+            className={`lg:hidden bg-green-700 pb-4 space-y-3 text-center font-semibold transition-max-height duration-300 ease-in-out
+      ${isMobileMenuOpen ? "max-h-screen" : "max-h-0 overflow-hidden"}`}
+          >
+            <button
+              onClick={() => navigateTo("/")}
               className="block w-full py-2 hover:text-yellow-400 transition-colors"
             >
-              MENU
-            </button> */}
-
-            {/* Hoặc chuyển sang trang /menu */}
-
-        <button
-          onClick={() => navigateTo("/")}
-          className="block w-full py-2 hover:text-yellow-400 transition-colors"
-        >
-          TRANG CHỦ
-        </button>
+              TRANG CHỦ
+            </button>
             <button
               onClick={() => navigateTo("/menu")}
               className="block w-full py-2 hover:text-yellow-400 transition-colors"
@@ -132,25 +130,24 @@ export default function Header({ onBookingClick, isScrolled }: HeaderProps) {
             </button>
 
             <button
-               onClick={() => navigateTo("/sinh-nhat")}
+              onClick={() => navigateTo("/sinh-nhat")}
               className="block w-full py-2 hover:text-yellow-400 transition-colors"
             >
               TIỆC SINH NHẬT - TẤT NIÊN
             </button>
-        <button
-           onClick={() => navigateTo("/vuon-bia-ly-thai-to")}
-          className="block w-full py-2 hover:text-yellow-400 transition-colors"
-        >
-       VƯỜN BIA - LÝ THÁI TỔ
-        </button>
+            <button
+              onClick={() => navigateTo("/vuon-bia-ly-thai-to")}
+              className="block w-full py-2 hover:text-yellow-400 transition-colors"
+            >
+              VƯỜN BIA - LÝ THÁI TỔ
+            </button>
 
-        <button
-           onClick={() => navigateTo("/vuon-bia-bui-van-danh")}
-          className="block w-full py-2 hover:text-yellow-400 transition-colors"
-        >
-          VƯỜN BIA - BÙI VĂN DANH
-        </button>
-            
+            <button
+              onClick={() => navigateTo("/vuon-bia-bui-van-danh")}
+              className="block w-full py-2 hover:text-yellow-400 transition-colors"
+            >
+              VƯỜN BIA - BÙI VĂN DANH
+            </button>
 
             <div className="border-t border-green-600 pt-3">
               <div className="flex justify-center items-center text-yellow-400 font-bold space-x-1 mb-2">
