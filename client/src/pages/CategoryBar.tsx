@@ -3,20 +3,19 @@ import useEmblaCarousel from "embla-carousel-react";
 
 const categories = [
   "Tất cả",
-     "Khai Vị",
-      "Món bò",
-      "Lẩu",
-      "Mì - Miến",
-      "Cơm",
-      "Món gà",
-      "Món heo",
-       "Gỏi vườn bia",
-      "Thủy sản",
-    "Hải Sản và Ốc",
-        "Món chay",
-    "Combo",
-  "Best Vườn Bia",
-     "Bia – NƯỚC Giải Khát",
+  "Khai Vị",
+  "Món bò",
+  "Lẩu",
+  "Mì - Miến",
+  "Cơm",
+  "Món gà",
+  "Món heo",
+  "Gỏi vườn bia",
+  "Thủy sản",
+  "Hải Sản và Ốc",
+  "Món chay",
+  "Combo",
+  "Bia – NƯỚC Giải Khát",
 ];
 
 interface CategoryBarProps {
@@ -24,7 +23,10 @@ interface CategoryBarProps {
   setActiveCategory: (cat: string) => void;
 }
 
-export default function CategoryBar({ activeCategory, setActiveCategory }: CategoryBarProps) {
+export default function CategoryBar({
+  activeCategory,
+  setActiveCategory,
+}: CategoryBarProps) {
   // Khởi tạo Embla carousel
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
@@ -53,10 +55,18 @@ export default function CategoryBar({ activeCategory, setActiveCategory }: Categ
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
+                disabled={activeCategory === cat} // disable khi đang active
                 className={`relative inline-block px-6 py-2 font-bold text-sm flex-shrink-0 transition-all duration-300
-                  ${activeCategory === cat ? "bg-[#ffa827] text-green-900 font-bold" : "bg-[#ffa827] text-green-900"}
+                  ${
+                    activeCategory === cat
+                      ? "bg-[#ffa827] text-green-900 font-bold opacity-70 cursor-not-allowed"
+                      : "bg-[#ffa827] text-green-900 hover:bg-[#ffb74d]"
+                  }
                   focus:outline-none focus:ring-0`}
-                style={{ fontFamily: 'Roboto, sans-serif', textTransform: 'uppercase' }}
+                style={{
+                  fontFamily: "Roboto, sans-serif",
+                  textTransform: "uppercase",
+                }}
               >
                 {cat}
                 {activeCategory === cat && (
