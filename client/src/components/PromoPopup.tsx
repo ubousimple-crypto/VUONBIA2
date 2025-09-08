@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
 function PromoPopup() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const hasShown = sessionStorage.getItem("hasShownPopup");
+
+    if (!hasShown) {
+      setIsVisible(true); // hiện popup khi vào tab mới
+      sessionStorage.setItem("hasShownPopup", "true");
+    }
+  }, []);
 
   const handleClose = () => setIsVisible(false);
-
-  // (Optional) Cleanup overflow in case
-  useEffect(() => {
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, []);
 
   if (!isVisible) return null;
 
