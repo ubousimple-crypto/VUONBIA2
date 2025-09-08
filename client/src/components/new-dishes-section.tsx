@@ -146,6 +146,9 @@ export function MonNgonMoiRaLo() {
                     <p className="text-lg mb-1">{mon.name}</p>
                     <p className="text-red-600 font-bold">{formatPrice(mon.price)}</p>
                   </div>
+                  <div className="text-xs text-center italic text-yellow-900">
+                    *Hình ảnh chỉ mang tính chất minh họa
+                  </div>
                 </div>
               ))
             ) : (
