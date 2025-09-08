@@ -1,26 +1,15 @@
 import React, { useState } from "react";
 import { useLocation } from "wouter";
-import { Utensils, Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 
 interface HeaderProps {
   isScrolled: boolean;
-  onBookingClick: () => void;
 }
 
-export default function Header({ onBookingClick, isScrolled }: HeaderProps) {
+export default function Header({ isScrolled }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [, setLocation] = useLocation(); // lấy setLocation để chuyển route
+  const [, setLocation] = useLocation();
 
-  // Hàm cuộn tới section theo id (dùng cho scroll nội bộ)
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsMobileMenuOpen(false);
-  };
-
-  // Hàm chuyển trang route (dùng cho các link dẫn sang trang khác)
   const navigateTo = (path: string) => {
     setLocation(path);
     setIsMobileMenuOpen(false);
@@ -37,7 +26,7 @@ export default function Header({ onBookingClick, isScrolled }: HeaderProps) {
           {/* Logo */}
           <div
             className="flex items-center space-x-2 cursor-pointer"
-            onClick={() => navigateTo("/")} // 👉 chuyển về trang chủ
+            onClick={() => navigateTo("/")}
           >
             <div className="w-12 h-12 rounded-full overflow-hidden">
               <img
@@ -46,54 +35,49 @@ export default function Header({ onBookingClick, isScrolled }: HeaderProps) {
                 className="w-full h-full object-cover scale-150 transform"
               />
             </div>
-            <h1 className="text-white font-bold text-lg tracking-wide">
-              VƯỜN BIA
-            </h1>
+            <h1 className="text-white font-bold text-lg tracking-wide">VƯỜN BIA</h1>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex space-x-8 font-semibold text-sm">
             <button
-              onClick={() => scrollToSection("thuc-don")}
+              onClick={() => navigateTo("/")}
               className="hover:text-yellow-400 transition-colors"
             >
-              THỰC ĐƠN
+              TRANG CHỦ
             </button>
             <button
-              onClick={() => scrollToSection("co-so")}
+              onClick={() => navigateTo("/menu")}
               className="hover:text-yellow-400 transition-colors"
             >
-              CƠ SỞ
+              MENU
             </button>
             <button
-              onClick={() => scrollToSection("uu-dai")}
+              onClick={() => navigateTo("/sinh-nhat")}
               className="hover:text-yellow-400 transition-colors"
             >
-              ƯU ĐÃI
+              TIỆC SINH NHẬT - TẤT NIÊN
             </button>
             <button
-              onClick={() => scrollToSection("lien-he")}
+              onClick={() => navigateTo("/vuon-bia-ly-thai-to")}
               className="hover:text-yellow-400 transition-colors"
             >
-              LIÊN HỆ
+              VƯỜN BIA - LÝ THÁI TỔ
+            </button>
+            <button
+              onClick={() => navigateTo("/vuon-bia-bui-van-danh")}
+              className="hover:text-yellow-400 transition-colors"
+            >
+              VƯỜN BIA - BÙI VĂN DANH
             </button>
           </div>
 
-          {/* Hotline + Đặt bàn desktop */}
-          <div className="hidden lg:flex items-center space-x-6">
-            <div className="text-right">
-              <div className="text-xs">HOTLINE</div>
-              <div className="flex items-center text-lg font-bold text-yellow-400">
-                <Phone className="w-5 h-5 mr-1" />
-                *1986
-              </div>
-            </div>
-            <button
-              onClick={onBookingClick}
-              className="bg-yellow-400 text-green-700 px-5 py-2 rounded-lg font-bold hover:bg-yellow-300 transition-colors"
-            >
-              ĐẶT BÀN
-            </button>
+          {/* Hotline desktop */}
+          <div className="hidden lg:flex items-center text-yellow-400 font-bold space-x-2">
+            <Phone className="w-5 h-5" />
+            <a href="tel:0783885288" className="hover:underline">
+              HOTLINE: 0783885288
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -102,19 +86,16 @@ export default function Header({ onBookingClick, isScrolled }: HeaderProps) {
             className="lg:hidden text-white focus:outline-none"
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? (
-              <X className="w-8 h-8" />
-            ) : (
-              <Menu className="w-8 h-8" />
-            )}
+            {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
           </button>
         </nav>
 
         {/* Mobile menu */}
         {isMobileMenuOpen && (
           <div
-            className={`lg:hidden bg-green-700 pb-4 space-y-3 text-center font-semibold transition-max-height duration-300 ease-in-out
-      ${isMobileMenuOpen ? "max-h-screen" : "max-h-0 overflow-hidden"}`}
+            className={`lg:hidden bg-green-700 pb-4 space-y-3 text-center font-semibold transition-max-height duration-300 ease-in-out ${
+              isMobileMenuOpen ? "max-h-screen" : "max-h-0 overflow-hidden"
+            }`}
           >
             <button
               onClick={() => navigateTo("/")}
@@ -128,7 +109,6 @@ export default function Header({ onBookingClick, isScrolled }: HeaderProps) {
             >
               MENU
             </button>
-
             <button
               onClick={() => navigateTo("/sinh-nhat")}
               className="block w-full py-2 hover:text-yellow-400 transition-colors"
@@ -141,7 +121,6 @@ export default function Header({ onBookingClick, isScrolled }: HeaderProps) {
             >
               VƯỜN BIA - LÝ THÁI TỔ
             </button>
-
             <button
               onClick={() => navigateTo("/vuon-bia-bui-van-danh")}
               className="block w-full py-2 hover:text-yellow-400 transition-colors"
