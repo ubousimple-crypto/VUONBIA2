@@ -12,7 +12,7 @@
             <div className="fixed top-[45%] right-0 flex flex-col gap-3 z-50">
               {/* Facebook */}
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=100084943486238"
                 target="_blank"
                 rel="noreferrer"
                 className="w-12 h-12 flex items-center justify-center bg-blue-600 rounded-full text-white hover:bg-blue-700 transition shadow-lg"
@@ -24,7 +24,7 @@
               {/* Phone */}
               <a
                 href="tel:+0783885288"
-                className="w-12 h-12 flex items-center justify-center bg-green-700 rounded-full text-white hover:bg-green-800 transition shadow-lg"
+                className="w-12 h-12 flex items-center justify-center bg-red-500 rounded-full text-white hover:bg-red-800 transition shadow-lg"
                 aria-label="Phone"
               >
                 <Phone className="w-6 h-6" />
@@ -32,32 +32,38 @@
 
               {/* Messenger */}
               <a
-                href="https://m.me/yourpage"
+                href="https://www.messenger.com/t/102058722637703"
                 target="_blank"
                 rel="noreferrer"
-                className="w-12 h-12 flex items-center justify-center bg-yellow-400 rounded-full text-white hover:bg-yellow-500 transition shadow-lg"
+                className="w-12 h-12 flex items-center justify-center bg-blue-500 rounded-full hover:bg-blue-600 transition shadow-lg"
                 aria-label="Messenger"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-6 h-6"
+                  viewBox="0 0 32 32"
+                  className="w-7 h-7"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10l3 3 4-4" />
+                  <path
+                    fill="white"
+                    d="M16 0C7.164 0 0 6.72 0 15c0 4.727 2.389 8.964 6.176 11.748V32l5.656-3.104C13.246 29.616 14.598 30 16 30c8.836 0 16-6.72 16-15S24.836 0 16 0zm1.544 20.328l-3.944-4.2-7.968 4.2 8.732-9.328 3.888 4.2 8.028-4.2-8.736 9.328z"
+                  />
                 </svg>
               </a>
 
+
               {/* Zalo */}
               <a
-                href="https://zalo.me/yourid"
+                href="https://zalo.me/0783885288"
                 target="_blank"
                 rel="noreferrer"
-                className="w-12 h-12 flex items-center justify-center bg-red-600 rounded-full text-white hover:bg-red-700 transition shadow-lg text-sm font-bold"
+                className="w-12 h-12 flex items-center justify-center bg-red-500 rounded-full hover:bg-red-700 transition shadow-lg"
                 aria-label="Zalo"
               >
-                Zalo
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"
+                  alt="Zalo"
+                  className="w-9 h-9"
+                />
               </a>
             </div>
 
