@@ -56,7 +56,7 @@
                 href="https://zalo.me/0783885288"
                 target="_blank"
                 rel="noreferrer"
-                className="w-12 h-12 flex items-center justify-center bg-red-500 rounded-full hover:bg-red-700 transition shadow-lg"
+                className="w-12 h-12 flex items-center justify-center rounded-full hover:transition shadow-lg"
                 aria-label="Zalo"
               >
                 <img
