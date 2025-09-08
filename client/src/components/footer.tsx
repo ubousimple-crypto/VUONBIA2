@@ -56,7 +56,7 @@
                 href="https://zalo.me/0783885288"
                 target="_blank"
                 rel="noreferrer"
-                className="w-12 h-12 flex items-center justify-center rounded-full hover:transition shadow-lg"
+                className="w-12 h-12 flex items-center justify-center bg-red-500 rounded-full hover:bg-red-700 transition shadow-lg"
                 aria-label="Zalo"
               >
                 <img
@@ -84,11 +84,11 @@
                   <ul className="text-sm space-y-2 font-poppins text-white">
                     <li className="flex items-center gap-2">
                       <MapPin className="w-5 h-5 text-white" />
-                      <span>Chi nhánh 1: Lý Thái Tổ, Long Xuyên</span>
+                      <span>Chi nhánh 1: Lý Thái Tổ Nối Dài, Phường Long Xuyên, Tỉnh An Giang</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <MapPin className="w-5 h-5 text-white" />
-                      <span>Chi nhánh 2: Bờ Kè, Bùi Văn Danh</span>
+                      <span>Chi nhánh 2: Bờ Kè Bùi Văn Danh, Phường Long Xuyên, Tỉnh An Giang </span>
                     </li>
                   </ul>
                 </div>
@@ -101,7 +101,7 @@
 
               {/* Bottom Bar */}
               <div className="mt-10 border-t border-gray-700 pt-6 text-center text-xs text-yellow-400 italic">
-                <p>&copy; 2024 Vườn Bia — Cùng chill, cùng bia, cùng bạn bè.</p>
+                <p>&copy; 2025 Vườn Bia — Cùng chill, cùng bia, cùng bạn bè.</p>
               </div>
             </footer>
           </>
