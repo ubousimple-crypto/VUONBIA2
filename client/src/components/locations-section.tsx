@@ -165,19 +165,26 @@ export default function LocationsSection({ onBookingClick }: LocationsSectionPro
                       <div className="flex gap-4 flex-col sm:flex-row">
                         <Button
                           onClick={() => window.open(mapUrl, "_blank")}
-                          className="flex-1 bg-green-200 hover:bg-green-500 text-gray-700 font-extrabold py-3 rounded-lg flex items-center justify-center transition-colors duration-300"
+                          className="bg-green-600 text-white border-2 border-black px-6 py-3 rounded hover:bg-green-700 text-white font-extrabold py-3 rounded-lg flex items-center justify-center transition-colors duration-300"
                           style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}
                         >
                           <MapPin className="w-5 h-5 mr-2" />
-                          Xem bản đồ
+                          XEM BẢN ĐỒ
                         </Button>
 
-                        <Button
-                          onClick={() => setLocation(`/location/${createSlug(location.name)}`)}
-                          className="flex-1 bg-yellow-100 hover:bg-yellow-300 text-yellow-900 font-extrabold py-3 rounded-lg transition-colors duration-300"
+                          <Button
+                            onClick={() => {
+                              if (location.name.includes("Lý Thái Tổ")) {
+                                setLocation("/vuon-bia-ly-thai-to");
+                              } else if (location.name.includes("Bùi Văn Danh")) {
+                                setLocation("/vuon-bia-bui-van-danh");
+                              }
+                            }}
+
+                          className="bg-yellow-400 text-black border-2 border-black px-6 py-3 rounded hover:bg-yellow-200 text-gray-700 font-extrabold py-3 rounded-lg flex items-center justify-center transition-colors duration-300"
                           style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}
                         >
-                          Xem chi tiết
+                          XEM KHÔNG GIAN
                         </Button>
                       </div>
                     </CardContent>
