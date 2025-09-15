@@ -775,7 +775,7 @@ export const newDishes = [
   {
     name: "Bia Tươi Tháp Tuborg (3 lít)",
     category: "Bia – NƯỚC Giải Khát",
-    price: 299000,
+    price: 239000,
     image: "",
   },
   {
