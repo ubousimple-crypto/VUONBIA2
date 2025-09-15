@@ -311,7 +311,7 @@ export const newDishes = [
   {
     name: "Cao Sơn Nướng Sa Tế / Nướng Chao",
     category: "Món heo",
-    price: 109000,
+    price: 129000,
     image: "HEO/cao-son-nuong-sa-te.jpg", // ảnh minh họa
   },
   {
