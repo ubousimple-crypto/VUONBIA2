@@ -213,7 +213,7 @@ export const newDishes = [
   {
     name: "Bò Sốt Tiêu Đen",
     category: "Món bò",
-    price: 129000,
+    price: 189000,
     image: "BO/bo-sot-tieu-den.jpg"
   },
 
