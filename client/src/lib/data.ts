@@ -743,15 +743,21 @@ export const newDishes = [
     image: "BIA/bia-tuborg-ice.jpg",
   },
   {
-    name: "Bia Blanc 1664",
+    name: "Bia Blanc Lon 1664",
     category: "Bia – NƯỚC Giải Khát",
-    price: 24000,
+    price: 26000,
+    image: "BIA/bia-blanc-1664.jpg",
+  },
+  {
+    name: "Bia Blanc Chai 1664",
+    category: "Bia – NƯỚC Giải Khát",
+    price: 26000,
     image: "BIA/bia-blanc-1664.jpg",
   },
   {
     name: "Bia Carlsberg Pilsner",
     category: "Bia – NƯỚC Giải Khát",
-    price: 24000,
+    price: 26000,
     image: "BIA/bia-carlslver.jpg",
   },
   {
@@ -765,6 +771,12 @@ export const newDishes = [
     category: "Bia – NƯỚC Giải Khát",
     price: 299000,
     image: "BIA/bia-carlsberg-thap.jpg",
+  },
+  {
+    name: "Bia Tươi Tháp Tuborg (3 lít)",
+    category: "Bia – NƯỚC Giải Khát",
+    price: 299000,
+    image: "",
   },
   {
     name: "Bia Budweiser Chai",
@@ -785,15 +797,33 @@ export const newDishes = [
     image: "BIA/bia-corona.png",
   },
   {
-    name: "Bia Tiger Nâu",
+    name: "Bia Tiger Nâu 330ml",
     category: "Bia – NƯỚC Giải Khát",
-    price: 22000,
+    price: 20000,
+    image: "BIA/bia-tiger-lon.jpg",
+  },
+   {
+    name: "Bia Tiger Nâu 250ml",
+    category: "Bia – NƯỚC Giải Khát",
+    price: 16000,
     image: "BIA/bia-tiger-lon.jpg",
   },
   {
-    name: "Bia Tiger Crystal",
+    name: "Bia Tiger Crystal 330ml",
     category: "Bia – NƯỚC Giải Khát",
-    price: 26000,
+    price: 22000,
+    image: "BIA/bia-tiger-crystal.jpg",
+  },
+  {
+    name: "Bia Tiger Crystal 250ml",
+    category: "Bia – NƯỚC Giải Khát",
+    price: 1818000,
+    image: "BIA/bia-tiger-crystal.jpg",
+  },
+   {
+    name: "Bia Tiger Crystal 250ml",
+    category: "Bia – NƯỚC Giải Khát",
+    price: 18000,
     image: "BIA/bia-tiger-crystal.jpg",
   },
   {
@@ -817,7 +847,7 @@ export const newDishes = [
   {
     name: "Rượu Soju",
     category: "Bia – NƯỚC Giải Khát",
-    price: 89000,
+    price: 100000,
     image: "BIA/ruou-soju.jpg",
   },
   {
@@ -841,7 +871,7 @@ export const newDishes = [
   {
     name: "Nước Suối",
     category: "Bia – NƯỚC Giải Khát",
-    price: 14000,
+    price: 10000,
     image: "BIA/nuoc-suoi.jpg",
   },
   {
