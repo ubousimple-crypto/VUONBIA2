@@ -341,13 +341,13 @@ export const newDishes = [
   {
     name: "Ba Rọi Chiên Giòn Mắm Nhĩ",
     category: "Món heo",
-    price: 189000,
+    price: 109000,
     image: "HEO/ba-roi-chien-mam-nhi.jpg",
   },
   {
     name: "Giò Heo Chiên Giòn",
     category: "Món heo",
-    price: 179000,
+    price: 189000,
     image: "HEO/gio-heo-chien-gion.jpg",
   },
   {
@@ -751,7 +751,7 @@ export const newDishes = [
   {
     name: "Bia Blanc Chai 1664",
     category: "Bia – NƯỚC Giải Khát",
-    price: 26000,
+    price: 24000,
     image: "BIA/bia-blanc-1664.jpg",
   },
   {
