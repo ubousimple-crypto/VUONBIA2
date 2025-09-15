@@ -976,7 +976,7 @@ export const locations = [
     district: "mylong", // Thêm dòng này
     image: "/VB-LTT2.jpg", // nếu có dùng ảnh
     description: "Chi nhánh 1",
-    openingHours: "16:00 - 23:00",
+    openingHours: "14:00 - 24:00",
 
   },
   {
@@ -986,7 +986,7 @@ export const locations = [
     district: "myhoa",
     image: "/VB-BVD2.png",
     description: "    Chi nhánh 2",
-     openingHours: "16:00 - 23:30",
+     openingHours: "09:00 - 23:00",
   },
 ];
 export const districts = [
