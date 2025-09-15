@@ -817,7 +817,7 @@ export const newDishes = [
   {
     name: "Bia Tiger Crystal 250ml",
     category: "Bia – NƯỚC Giải Khát",
-    price: 1818000,
+    price: 18000,
     image: "BIA/bia-tiger-crystal.jpg",
   },
    {
