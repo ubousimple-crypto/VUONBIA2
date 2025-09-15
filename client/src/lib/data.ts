@@ -475,7 +475,7 @@ export const newDishes = [
   {
     name: "Mực Lá Nướng Muối Ớt",
     category: "Hải Sản và Ốc",
-    price: 129000,
+    price: 159000,
     image: "HAISAN/muc-la-nuong-muoi-ot.jpg",
   },
   {
