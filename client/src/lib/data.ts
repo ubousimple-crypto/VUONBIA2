@@ -935,14 +935,14 @@ export const newDishes = [
   {
     name: "Mì Xào Hải Sản / Xào Bò",
     category: "Mì - Miến",
-    price: 99000,
+    price: 109000,
     image: "MI/mi-xao-hai-san.jpg",
     note: ""
   },
   {
     name: "Miến Xào Hải Sản",
     category: "Mì - Miến",
-    price: 99000,
+    price: 109000,
     image: "MI/mien-xao-hai-san.jpg",
     note: ""
   },
@@ -965,14 +965,14 @@ export const newDishes = [
   {
     name: "Cơm Chiên Cá Mặn",
     category: "Cơm",
-    price: 69000,
+    price: 89000,
     image: "COM/com-chien-ca-man.jpg",
     note: ""
   },
   {
     name: "Cơm Trùm Mền",
     category: "Cơm",
-    price: 99000,
+    price: 69000,
     image: "COM/com-trum-men.jpg",
     note: ""
   },
