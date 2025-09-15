@@ -584,7 +584,7 @@ export const newDishes = [
   {
     name: "Ếch Núp Lùm",
     category: "Thủy Sản",
-    price: 129000,
+    price: 99000,
     image: "THUYSAN/ech-nup-lum.jpg",
   },
   {
@@ -596,7 +596,7 @@ export const newDishes = [
   {
     name: "Chả Cá Thác Lác Hấp Cải Xanh",
     category: "Thủy Sản",
-    price: 139000,
+    price: 179000,
     image: "THUYSAN/ca-thac-lac-hap-cai-xanh.jpg",
   },
   {
@@ -614,7 +614,7 @@ export const newDishes = [
   {
     name: "Cá Đồng Chiên Giòn",
     category: "Thủy Sản",
-    price: 149000,
+    price: 119000,
     image: "THUYSAN/ca-dong-chien-gion.jpg",
   },
   {
