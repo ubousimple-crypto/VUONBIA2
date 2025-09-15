@@ -608,7 +608,7 @@ export const newDishes = [
   {
     name: "Cá Cam Nướng Muối Ớt",
     category: "Thủy Sản",
-    price: 119000,
+    price: 169000,
     image: "THUYSAN/ca-cam-nuong.jpg",
   },
   {
@@ -812,12 +812,6 @@ export const newDishes = [
     name: "Bia Tiger Crystal 330ml",
     category: "Bia – NƯỚC Giải Khát",
     price: 22000,
-    image: "BIA/bia-tiger-crystal.jpg",
-  },
-  {
-    name: "Bia Tiger Crystal 250ml",
-    category: "Bia – NƯỚC Giải Khát",
-    price: 18000,
     image: "BIA/bia-tiger-crystal.jpg",
   },
    {
