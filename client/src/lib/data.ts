@@ -898,7 +898,7 @@ export const newDishes = [
   {
     name: "Lẩu Gà Lá Chanh",
     category: "Lẩu",
-    price: 299000,
+    price: 319000,
     image: "LAU/lau-ga-la-chanh.jpg",
     note: ""
   },
