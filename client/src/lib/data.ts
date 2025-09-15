@@ -223,13 +223,13 @@ export const newDishes = [
     {
       name: "Gà Tre Hấp Mắm Nhĩ",
       category: "Món gà",
-      price: 290000,
+      price: 299000,
       image: "GA/ga-hap-mam-nhi.png",
     },
     {
       name: "Gà Tre Nướng Muối Ớt",
       category: "Món gà",
-      price: 290000,
+      price: 299000,
       image: "GA/ga-nuong-muoi-ot.jpg",
     },
     {
@@ -273,7 +273,7 @@ export const newDishes = [
   {
     name: "Chân Gà Rút Xương Sốt Thái",
     category: "Món gà",
-    price: 89000,
+    price: 99000,
     image: "GA/chan-ga-sot-thai.jpg",
   },
   {
