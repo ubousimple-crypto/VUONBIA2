@@ -111,7 +111,7 @@ export function VuonBia() {
 export function MonNgonMoiRaLo() {
   const [, setLocation] = useLocation(); // ✅ Gọi đúng nơi
 
-  const monMoi = (newDishes || []).filter((dish) => dish.category === "Best Vườn Bia");
+  const monMoi = (newDishes || []).filter((dish) => dish.category === "Món bò");
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
