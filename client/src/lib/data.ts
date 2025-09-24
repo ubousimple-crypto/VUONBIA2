@@ -536,7 +536,7 @@ export const newDishes = [
     name: "Hào Nướng Mỡ Hành (Con)",
     category: "Hải Sản và Ốc",
     price: 25000,
-    image: "HAISAN/hau-nuong-mo-hanh1.jpg",
+    image: "HAISAN/hau-nuong-mo-hanh 1.jpg",
   },
   {
     name: "Mực Khoanh Chiên Giòn",
