@@ -939,10 +939,17 @@ export const newDishes = [
 
   // 🍜 MÌ - MIẾN
   {
-    name: "Mì Xào Hải Sản / Xào Bò",
+    name: "Mì Xào Hải Sản",
     category: "Mì - Miến",
     price: 109000,
     image: "MI/mi-xao-hai-san.jpg",
+    note: ""
+  },
+   {
+    name: "Mì Xào ",
+    category: "Mì - Miến",
+    price: 109000,
+    image: "MI/mi-xao-bo.jpg",
     note: ""
   },
   {
