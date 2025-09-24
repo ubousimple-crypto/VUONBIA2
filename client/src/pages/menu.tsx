@@ -233,7 +233,7 @@ export default function Menu() {
       {/* Main content */}
       <main
         className="container mx-auto px-4"
-        style={{ marginTop: "305px", paddingBottom: "50px" }}
+        style={{ marginTop: "291px", paddingBottom: "50px" }}
       >
         {searchTerm !== ""
           ? renderSection("Kết quả tìm kiếm")
