@@ -527,10 +527,16 @@ export const newDishes = [
     image: "HAISAN/oc-huong-sot-trung-muoi.jpg",
   },
   {
-    name: "Hào Nướng Mỡ Hành / Phô Mai (Con)",
+    name: "Hào Nướng Phô Mai (Con)",
     category: "Hải Sản và Ốc",
     price: 25000,
     image: "HAISAN/hau-nuong-mo-hanh.jpg",
+  },
+    {
+    name: "Hào Nướng Mỡ Hành (Con)",
+    category: "Hải Sản và Ốc",
+    price: 25000,
+    image: "HAISAN/hau-nuong-mo-hanh1.jpg",
   },
   {
     name: "Mực Khoanh Chiên Giòn",
