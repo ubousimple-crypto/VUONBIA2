@@ -76,7 +76,7 @@ export default function LocationsSection({ onBookingClick }: LocationsSectionPro
     </>,
     <>
       <span style={{ fontFamily: "'Roboto', 'Tahoma', 'Arial', 'sans-serif'" }}>
-        Thiên đường <span className="font-semibold text-yellow-700">sông nước yên bình</span> tại Lý Thái Tổ nối dài, Phường Long Xuyên, An Giang – tận hưởng không gian chill chill, thư giãn cùng cảnh đẹp thiên nhiên và những ly bia thơm ngon.
+        Thiên đường <span className="font-semibold text-yellow-700">sông nước yên bình</span> tại Bờ Kè Bùi Văn Danh, Phường Long Xuyên, An Giang – tận hưởng không gian chill chill, thư giãn cùng cảnh đẹp thiên nhiên và những ly bia thơm ngon.
       </span>
     </>
   ];
